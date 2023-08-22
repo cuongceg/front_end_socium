@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "18652618424",
+    "project_id": "fpt-contest",
+    "storage_bucket": "fpt-contest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:18652618424:android:804d112cf57858292f5e4d",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "18652618424-vejv8morpp2bcivcpi09rstf4aicjds2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFZ-zKgGK6bdmd3SQYp1GKTCY51HNyFOI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "18652618424-vejv8morpp2bcivcpi09rstf4aicjds2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
