@@ -15,7 +15,7 @@ class MySignupState extends State<SignUp>{
   bool loading=false;
   // final AuthService _auth=AuthService();
   final _formKey =GlobalKey<FormState>();
-  String? first_name,last_name,confirmpassword;
+  String? first_name,user_name,confirmpassword;
   String _email='';
   String password='';
   String error='';
@@ -23,7 +23,7 @@ class MySignupState extends State<SignUp>{
     hint =!hint;
   }
   final firstnameEditingController=TextEditingController();
-  final lastnameEditingController=TextEditingController();
+  final usernameEditingController=TextEditingController();
   final emailEditingController=TextEditingController();
   final passwordEditingController=TextEditingController();
   final confirmpasswordEditingController=TextEditingController();
@@ -35,13 +35,13 @@ class MySignupState extends State<SignUp>{
         home:SafeArea(
           child: Scaffold(
               appBar: AppBar(
-                backgroundColor: Colors.purple[100],
+                backgroundColor: Colors.purple[50],
                 leading: Builder(
                     builder: (BuildContext context){
                       return IconButton(
                           icon:const Icon(Icons.arrow_back_rounded,size: 30,),
                           onPressed: (){
-                            Get.to(Login());
+                            Get.to(()=>const Login());
                           }
                       );
                     }
@@ -97,7 +97,7 @@ class MySignupState extends State<SignUp>{
                               first_name=text;
                             });
                           },
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(
                                       Radius.circular(20)),
@@ -110,24 +110,24 @@ class MySignupState extends State<SignUp>{
                               ),
                               fillColor: Colors.white,
                               filled: true,
-                              labelText:'First name'
+                              labelText:'Name'
                           ),
                         ),
                         TextFormField(
                           validator: (val) {
                             if(val==null||val.isEmpty){
-                              return 'Enter last name';
+                              return 'Enter school';
                             }
                             else
                             {return null;}
                           },
-                          controller: lastnameEditingController,
+                          controller: usernameEditingController,
                           onChanged: (text){
                             setState(() {
-                              last_name=text;
+                              user_name=text;
                             });
                           },
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(
                                       Radius.circular(20)),
@@ -140,13 +140,13 @@ class MySignupState extends State<SignUp>{
                               ),
                               fillColor: Colors.white,
                               filled: true,
-                              labelText:'Last Name'
+                              labelText:'User Name'
                           ),
                         ),
                         TextFormField(
                           validator: (val) {
                             if(val==null||val.isEmpty){
-                              return 'Enter an email';
+                              return 'Enter an user name';
                             }
                             else
                             {return null;}
@@ -157,7 +157,7 @@ class MySignupState extends State<SignUp>{
                               _email=text;
                             });
                           },
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(
                                       Radius.circular(20)),
@@ -185,12 +185,12 @@ class MySignupState extends State<SignUp>{
                               });
                             },
                             decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
+                              enabledBorder: const OutlineInputBorder(
                                   borderRadius: BorderRadius.all(
                                       Radius.circular(20)),
                                   borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
                               ),
-                              focusedBorder: OutlineInputBorder(
+                              focusedBorder: const OutlineInputBorder(
                                   borderRadius: BorderRadius.all(
                                       Radius.circular(20)),
                                   borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
@@ -199,7 +199,7 @@ class MySignupState extends State<SignUp>{
                               filled: true,
                               labelText:'Password',
                               suffix: IconButton(
-                                  icon:hint?Icon(Icons.remove_red_eye_outlined):Icon(Icons.visibility_off),
+                                  icon:hint?const Icon(Icons.remove_red_eye_outlined):const Icon(Icons.visibility_off),
                                   onPressed:()async{
                                     setState(() {
                                       toggleView();
@@ -227,12 +227,12 @@ class MySignupState extends State<SignUp>{
                               });
                             },
                             decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
+                              enabledBorder: const OutlineInputBorder(
                                   borderRadius: BorderRadius.all(
                                       Radius.circular(20)),
                                   borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
                               ),
-                              focusedBorder: OutlineInputBorder(
+                              focusedBorder: const OutlineInputBorder(
                                   borderRadius: BorderRadius.all(
                                       Radius.circular(20)),
                                   borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
@@ -241,7 +241,7 @@ class MySignupState extends State<SignUp>{
                               filled: true,
                               labelText:'Confirm password',
                               suffix: IconButton(
-                                  icon:hint?Icon(Icons.remove_red_eye_outlined):Icon(Icons.hide_source_sharp),
+                                  icon:hint?const Icon(Icons.remove_red_eye_outlined):const Icon(Icons.hide_source_sharp),
                                   onPressed:()async{
                                     setState(() {
                                       toggleView();
