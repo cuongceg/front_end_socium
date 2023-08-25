@@ -31,6 +31,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
     double heightR=MediaQuery.of(context).size.height;
     double widthR=MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: Colors.purple[50],
       body: Form(
         key: _formkey,
           child: ListView(
@@ -72,20 +73,20 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                     });
                     },
                   decoration: const InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20)),
-                                        borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20)),
-                                        borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                                    ),
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                    labelText:'Adress'
-                                ),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(20)),
+                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(20)),
+                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                      ),
+                      fillColor: Colors.white,
+                      filled: true,
+                      labelText:'Adress'
+                  ),
                 ),
               ),
               Padding(
@@ -98,20 +99,20 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                     });
                     },
                   decoration: const InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20)),
-                                        borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20)),
-                                        borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                                    ),
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                    labelText:'School'
-                                ),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(20)),
+                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(20)),
+                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                      ),
+                      fillColor: Colors.white,
+                      filled: true,
+                      labelText:'School'
+                  ),
                 ),
               ),
               Padding(
@@ -120,25 +121,25 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                   controller: ageEditingController,
                   onChanged: (text){
                     setState(() {
-                                    age=text;
-                                  });
+                      age=text;
+                    });
                     },
                   decoration: const InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20)),
-                                        borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20)),
-                                        borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                                    ),
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                    labelText:'Age'
-                                ),
-                              ),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(20)),
+                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(20)),
+                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                      ),
+                      fillColor: Colors.white,
+                      filled: true,
+                      labelText:'Age'
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -173,138 +174,59 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                   decoration:BoxDecoration(
                       color: Colors.white,
                       border: Border.all(color: Colors.deepPurple,width: 2),
-                      backgroundBlendMode: BlendMode.color,
                       borderRadius: BorderRadius.circular(20)
                   ),
                   child: Row(
-                                  children: [
-                                    const Text('  Gender: '),
-                                    SizedBox(
-                                      width: widthR/4.5,
-                                      height: heightR/19,
-                                      child: DropdownButton(
-                                        dropdownColor: Colors.white,
-                                        underline: const SizedBox(),
-                                        style: const TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.black87
-                                        ),
-                                        value: gender_choose??GenderList[0],
-                                        onChanged:(newGender){
-                                          setState(() {
-                                            gender_choose = newGender;
-                                          });
-                                        } ,
-                                        items: GenderList.map((gender){
-                                          return DropdownMenuItem(
-                                              value: gender,
-                                              child: Text(gender),
-                                          );
-                                        }).toList(),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                    children: [
+                      const Text('  Gender: '),
+                      SizedBox(
+                        width: widthR/4.5,
+                        height: heightR/19,
+                        child: DropdownButton(
+                          dropdownColor: Colors.white,
+                          underline: const SizedBox(),
+                          style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.black87
+                          ),
+                          value: gender_choose??GenderList[0],
+                          onChanged:(newGender){
+                            setState(() {
+                              gender_choose = newGender;
+                            });
+                            } ,
+                          items: GenderList.map((gender){
+                            return DropdownMenuItem(
+                              value: gender,
+                              child: Text(gender),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: SizedBox(
-                                height: heightR/14,
-                                width: widthR,
-                                child: TextFormField(
-                                  controller:passwordEditingController ,
-                                  obscureText: hint,
-                                  onChanged: (text){
-                                    setState(() {
-                                      _password=text;
-                                    });
-                                  },
-                                  decoration: InputDecoration(
-                                    enabledBorder: const OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20)),
-                                        borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                                    ),
-                                    focusedBorder: const OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20)),
-                                        borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                                    ),
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                    labelText:'New Password',
-                                    suffix: IconButton(
-                                        icon:hint?const Icon(Icons.remove_red_eye_outlined):const Icon(Icons.visibility_off),
-                                        onPressed:()async{
-                                          setState(() {
-                                            toggleView();
-                                          });
-                                        }
-                                    ),
-                                  ),
-                                ),
-                              ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: SizedBox(
-                                height: heightR/14,
-                                width: widthR,
-                                child: TextFormField(
-                                  controller:confirmpasswordEditingController ,
-                                  obscureText: hint,
-                                  onChanged: (text){
-                                    setState(() {
-                                      _confirmpassword=text;
-                                    });
-                                  },
-                                  decoration: InputDecoration(
-                                    enabledBorder: const OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20)),
-                                        borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                                    ),
-                                    focusedBorder: const OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20)),
-                                        borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                                    ),
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                    labelText:'New Password',
-                                    suffix: IconButton(
-                                        icon:hint?const Icon(Icons.remove_red_eye_outlined):const Icon(Icons.visibility_off),
-                                        onPressed:()async{
-                                          setState(() {
-                                            toggleView();
-                                          });
-                                        }
-                                    ),
-                                  ),
-                                ),
-                              ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical:10.0,horizontal:130),
                 child: Container(
-                                color: Colors.deepPurple[100],
-                                width: widthR/13,
-                                child: TextButton(
-                                  child: const Text(
-                                    'Update',
-                                    style: TextStyle(
-                                      color: Colors.black
-                                    ),
-                                  ),
-                                  onPressed: (){
-                                    setState(() {
-                                      _password='';
-                                      _confirmpassword='';
-                                    });
-                                  },
-                                ),
-                              ),
+                  color: Colors.deepPurple[100],
+                  width: widthR/13,
+                  child: TextButton(
+                    child: const Text(
+                      'Update',
+                      style: TextStyle(
+                          color: Colors.black
+                      ),
+                    ),
+                    onPressed: (){
+                      setState(() {
+                        _password='';
+                        _confirmpassword='';
+                      });
+                      },
+                  ),
+                ),
               ),
             ],
           ),
