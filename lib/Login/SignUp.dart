@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:app/Widgets/Loading.dart';
 import 'package:get/get.dart';
 import 'package:app/Login/SignIn.dart';
+import 'package:google_fonts/google_fonts.dart';
 class SignUp extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -39,7 +40,7 @@ class MySignupState extends State<SignUp>{
                 leading: Builder(
                     builder: (BuildContext context){
                       return IconButton(
-                          icon:const Icon(Icons.arrow_back_rounded,size: 30,),
+                          icon:const Icon(Icons.arrow_back_rounded,size: 30,color: Colors.black,),
                           onPressed: (){
                             Get.to(()=>const Login());
                           }
@@ -47,12 +48,12 @@ class MySignupState extends State<SignUp>{
                     }
                 ),
                 title: const Text('Sign up',style:TextStyle(
-                    color:Colors.white ,
+                    color:Colors.black,
                     fontSize: 30,
                     fontWeight: FontWeight.bold
                 )),
               ),
-            backgroundColor: Colors.deepPurple[50],
+            backgroundColor: Colors.purple[50],
               body: Center(
                   child:Form(
                     key:_formKey,
@@ -66,7 +67,7 @@ class MySignupState extends State<SignUp>{
                               'Already have account ?',
                               style: TextStyle(
                                   color: Colors.black54,
-                                  fontSize: 25
+                                  fontSize: 20
                               ),
                             ),
                             TextButton(
@@ -77,7 +78,7 @@ class MySignupState extends State<SignUp>{
                                 style: TextStyle(
                                     color: Colors.purple[200],
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 25
+                                    fontSize: 22
                                 ),
                               ),
                             ),
@@ -268,6 +269,27 @@ class MySignupState extends State<SignUp>{
                               //     await Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
                               //   }
                               // }
+                              showModalBottomSheet<void>(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return SizedBox(
+                                    height: 200,
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: <Widget>[
+                                          Text('Sign Up successfully',style: GoogleFonts.roboto(fontSize: 23),),
+                                          ElevatedButton(
+                                            child:Text('Sign in',style: GoogleFonts.lato(fontSize: 23),),
+                                            onPressed: () => Get.to(()=>const Login()),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
                             },
                             child: const Text(
                               "Sign up",
