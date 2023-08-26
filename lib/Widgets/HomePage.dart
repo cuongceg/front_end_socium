@@ -27,16 +27,22 @@ class _HomePageState extends State<HomePage> {
       drawer: SlideBar(),
       appBar: AppBar(
           backgroundColor: Colors.purple[50],
-          title: const Text('Hello'),
-          actions: [
-            IconButton(
-              icon:const Icon(Icons.logout),
-              onPressed: () async{
-                Get.to(() => const Login());
+          title:Text('Hello cuongceg',style: GoogleFonts.roboto(fontSize: 20,color: Colors.black54)),
+          centerTitle: true,
+          leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.menu_open,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
               },
-              tooltip: 'log out',
-            )
-          ],
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
         ),
       backgroundColor: Colors.purple[50],
       body: Center(
