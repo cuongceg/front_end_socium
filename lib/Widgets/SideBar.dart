@@ -1,4 +1,5 @@
 import 'package:app/Login/SignIn.dart';
+import 'package:app/Widgets/Proflie.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:badges/badges.dart'as badges;
@@ -93,6 +94,13 @@ class _SlideBarState extends State<SlideBar> {
                       );
                       }
                   );
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.update),
+                title: const Text('Update Profile'),
+                onTap: (){
+                  Get.to(()=>MyProfileWidget());
                 },
               ),
               ListTile(
