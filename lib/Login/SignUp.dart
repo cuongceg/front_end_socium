@@ -5,6 +5,7 @@ import 'package:app/Widgets/Loading.dart';
 import 'package:get/get.dart';
 import 'package:app/Login/SignIn.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
 class SignUp extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -32,292 +33,312 @@ class MySignupState extends State<SignUp>{
   Widget build(BuildContext context){
     double heightR=MediaQuery.of(context).size.height;
     double widthR=MediaQuery.of(context).size.width;
-    return loading?const Loading():MaterialApp(
-        home:SafeArea(
-          child: Scaffold(
-              appBar: AppBar(
-                backgroundColor: Colors.purple[50],
-                leading: Builder(
-                    builder: (BuildContext context){
-                      return IconButton(
-                          icon:const Icon(Icons.arrow_back_rounded,size: 30,color: Colors.black,),
-                          onPressed: (){
-                            Get.to(()=>const Login());
-                          }
-                      );
-                    }
+    return loading?const Loading():AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.white,
+       ),
+      child: MaterialApp(
+          home:SafeArea(
+            child: Scaffold(
+                appBar: AppBar(
+                  backgroundColor: Colors.white,
+                  leading: Builder(
+                      builder: (BuildContext context){
+                        return IconButton(
+                            icon:const Icon(Icons.arrow_back_rounded,size: 30,color: Colors.black,),
+                            onPressed: (){
+                              Get.to(()=>const Login());
+                            }
+                        );
+                      }
+                  ),
+                  title: const Text('Sign up',style:TextStyle(
+                      color:Colors.black,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold
+                  )),
                 ),
-                title: const Text('Sign up',style:TextStyle(
-                    color:Colors.black,
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold
-                )),
-              ),
-            backgroundColor: Colors.purple[50],
-              body: Center(
-                  child:Form(
-                    key:_formKey,
-                    child:Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children:<Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            const Text(
-                              'Already have account ?',
-                              style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: 20
+              backgroundColor: Colors.white,
+                body: Center(
+                    child:Form(
+                      key:_formKey,
+                      child:ListView(
+                        children:<Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                'Already have account ?',
+                                style: GoogleFonts.roboto(fontSize:22,color: Colors.black)
+                              ),
+                              TextButton(
+                                onPressed:() =>
+                                    Navigator.pop(context),
+                                child:Text(
+                                  "Sign in",
+                                  style: TextStyle(
+                                      color: Colors.purple[200],
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 24
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: TextFormField(
+                              validator: (val) {
+                                if(val==null||val.isEmpty){
+                                  return 'Enter first name';
+                                }
+                                else
+                                {return null;}
+                              },
+                              controller: firstnameEditingController,
+                              onChanged: (text){
+                                setState(() {
+                                  first_name=text;
+                                });
+                              },
+                              decoration: const InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20)),
+                                      borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20)),
+                                      borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                                  ),
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  labelText:'Name'
                               ),
                             ),
-                            TextButton(
-                              onPressed:() =>
-                                  Navigator.pop(context),
-                              child:Text(
-                                "Sign in",
-                                style: TextStyle(
-                                    color: Colors.purple[200],
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: TextFormField(
+                              validator: (val) {
+                                if(val==null||val.isEmpty){
+                                  return 'Enter school';
+                                }
+                                else
+                                {return null;}
+                              },
+                              controller: usernameEditingController,
+                              onChanged: (text){
+                                setState(() {
+                                  user_name=text;
+                                });
+                              },
+                              decoration: const InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20)),
+                                      borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20)),
+                                      borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                                  ),
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  labelText:'User Name'
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: TextFormField(
+                              validator: (val) {
+                                if(val==null||val.isEmpty){
+                                  return 'Enter an user name';
+                                }
+                                else
+                                {return null;}
+                              },
+                              controller: emailEditingController,
+                              onChanged: (text){
+                                setState(() {
+                                  _email=text;
+                                });
+                              },
+                              decoration: const InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20)),
+                                      borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20)),
+                                      borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                                  ),
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  labelText:'Email address'
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: SizedBox(
+                              height: heightR/13,
+                              width: widthR,
+                              child: TextFormField(
+                                controller:passwordEditingController ,
+                                obscureText: hint,
+                                onChanged: (text){
+                                  setState(() {
+                                    password=text;
+                                  });
+                                },
+                                decoration: InputDecoration(
+                                  enabledBorder: const OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20)),
+                                      borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20)),
+                                      borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                                  ),
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  labelText:'Password',
+                                  suffix: IconButton(
+                                      icon:hint?const Icon(Icons.remove_red_eye_outlined):const Icon(Icons.visibility_off),
+                                      onPressed:()async{
+                                        setState(() {
+                                          toggleView();
+                                        });
+                                      }
+                                  ),
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                        TextFormField(
-                          validator: (val) {
-                            if(val==null||val.isEmpty){
-                              return 'Enter first name';
-                            }
-                            else
-                            {return null;}
-                          },
-                          controller: firstnameEditingController,
-                          onChanged: (text){
-                            setState(() {
-                              first_name=text;
-                            });
-                          },
-                          decoration: const InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(20)),
-                                  borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(20)),
-                                  borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                              ),
-                              fillColor: Colors.white,
-                              filled: true,
-                              labelText:'Name'
                           ),
-                        ),
-                        TextFormField(
-                          validator: (val) {
-                            if(val==null||val.isEmpty){
-                              return 'Enter school';
-                            }
-                            else
-                            {return null;}
-                          },
-                          controller: usernameEditingController,
-                          onChanged: (text){
-                            setState(() {
-                              user_name=text;
-                            });
-                          },
-                          decoration: const InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(20)),
-                                  borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(20)),
-                                  borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                              ),
-                              fillColor: Colors.white,
-                              filled: true,
-                              labelText:'User Name'
-                          ),
-                        ),
-                        TextFormField(
-                          validator: (val) {
-                            if(val==null||val.isEmpty){
-                              return 'Enter an user name';
-                            }
-                            else
-                            {return null;}
-                          },
-                          controller: emailEditingController,
-                          onChanged: (text){
-                            setState(() {
-                              _email=text;
-                            });
-                          },
-                          decoration: const InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(20)),
-                                  borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(20)),
-                                  borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                              ),
-                              fillColor: Colors.white,
-                              filled: true,
-                              labelText:'Email address'
-                          ),
-                        ),
-                        SizedBox(
-                          height: heightR/13,
-                          width: widthR,
-                          child: TextFormField(
-                            controller:passwordEditingController ,
-                            obscureText: hint,
-                            onChanged: (text){
-                              setState(() {
-                                password=text;
-                              });
-                            },
-                            decoration: InputDecoration(
-                              enabledBorder: const OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(20)),
-                                  borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                              ),
-                              focusedBorder: const OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(20)),
-                                  borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                              ),
-                              fillColor: Colors.white,
-                              filled: true,
-                              labelText:'Password',
-                              suffix: IconButton(
-                                  icon:hint?const Icon(Icons.remove_red_eye_outlined):const Icon(Icons.visibility_off),
-                                  onPressed:()async{
-                                    setState(() {
-                                      toggleView();
-                                    });
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: SizedBox(
+                              width: widthR,
+                              height: heightR/13,
+                              child: TextFormField(
+                                validator: (val) {
+                                  if(password != val){
+                                    return 'check your master password and try again';
                                   }
+                                  else{return null;}
+                                },
+                                controller: confirmpasswordEditingController,
+                                obscureText: hint,
+                                onChanged: (text){
+                                  setState(() {
+                                    confirmpassword=text;
+                                  });
+                                },
+                                decoration: InputDecoration(
+                                  enabledBorder: const OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20)),
+                                      borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20)),
+                                      borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                                  ),
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  labelText:'Confirm password',
+                                  suffix: IconButton(
+                                      icon:hint?const Icon(Icons.remove_red_eye_outlined):const Icon(Icons.visibility_off_sharp),
+                                      onPressed:()async{
+                                        setState(() {
+                                          toggleView();
+                                        });
+                                      }
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: widthR,
-                          height: heightR/13,
-                          child: TextFormField(
-                            validator: (val) {
-                              if(password != val){
-                                return 'check your master password and try again';
-                              }
-                              else{return null;}
-                            },
-                            controller: confirmpasswordEditingController,
-                            obscureText: hint,
-                            onChanged: (text){
-                              setState(() {
-                                confirmpassword=text;
-                              });
-                            },
-                            decoration: InputDecoration(
-                              enabledBorder: const OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(20)),
-                                  borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 25),
+                            child: Container(
+                              height: 50,
+                              width:widthR,
+                              decoration: BoxDecoration(
+                                color: Colors.deepPurple[300],
+                                borderRadius: const BorderRadius.all(Radius.circular(20))
                               ),
-                              focusedBorder: const OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(20)),
-                                  borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                              ),
-                              fillColor: Colors.white,
-                              filled: true,
-                              labelText:'Confirm password',
-                              suffix: IconButton(
-                                  icon:hint?const Icon(Icons.remove_red_eye_outlined):const Icon(Icons.hide_source_sharp),
-                                  onPressed:()async{
-                                    setState(() {
-                                      toggleView();
-                                    });
-                                  }
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 50,
-                          width:200,
-                          decoration: BoxDecoration(
-                            color: Colors.deepPurple[300],
-                          ),
-                          child: TextButton(
-                            onPressed:()async{
-                              // if(_formKey.currentState!.validate()){
-                              //   //dynamic result=await _auth.signupemailandpassword(_email, password);
-                              //   if(result == null){
-                              //     setState(() => error ='Please sign up a valid email and try again!' );
-                              //   }
-                              //   else{
-                              //     await Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
-                              //   }
-                              // }
-                              showModalBottomSheet<void>(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return SizedBox(
-                                    height: 200,
-                                    child: Center(
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: <Widget>[
-                                          Text('Sign Up successfully',style: GoogleFonts.roboto(fontSize: 23),),
-                                          ElevatedButton(
-                                            child:Text('Sign in',style: GoogleFonts.lato(fontSize: 23),),
-                                            onPressed: () => Get.to(()=>const Login()),
+                              child: TextButton(
+                                onPressed:()async{
+                                  // if(_formKey.currentState!.validate()){
+                                  //   //dynamic result=await _auth.signupemailandpassword(_email, password);
+                                  //   if(result == null){
+                                  //     setState(() => error ='Please sign up a valid email and try again!' );
+                                  //   }
+                                  //   else{
+                                  //     await Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                                  //   }
+                                  // }
+                                  showModalBottomSheet<void>(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return SizedBox(
+                                        height: 200,
+                                        child: Center(
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: <Widget>[
+                                              Text('Sign Up successfully',style: GoogleFonts.roboto(fontSize: 23),),
+                                              ElevatedButton(
+                                                child:Text('Sign in',style: GoogleFonts.lato(fontSize: 23),),
+                                                onPressed: () => Get.to(()=>const Login()),
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
-                                    ),
+                                        ),
+                                      );
+                                    },
                                   );
                                 },
-                              );
-                            },
-                            child: const Text(
-                              "Sign up",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 30
+                                child: const Text(
+                                  "Sign up",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 30
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(bottom: 10),
-                          child: SizedBox(height: 12.0,width: 30.0),
-                        ),
-                        Text(
-                          error,
-                          style: TextStyle(
-                              color: Colors.red[500],
-                              fontSize: 14
+                          const Padding(
+                            padding: EdgeInsets.only(bottom: 10),
+                            child: SizedBox(height: 12.0,width: 30.0),
                           ),
-                        )
-                      ],
-                    ),
-                  )
-              )
-          ),
-        )
+                          Text(
+                            error,
+                            style: TextStyle(
+                                color: Colors.red[500],
+                                fontSize: 14
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                )
+            ),
+          )
+      ),
     );
   }
 }
