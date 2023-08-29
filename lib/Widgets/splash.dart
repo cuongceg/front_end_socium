@@ -1,5 +1,4 @@
 import 'package:app/Login/SignIn.dart';
-import 'package:app/Widgets/HomePage.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -7,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:size_config/size_config.dart';
+import 'package:wave/wave.dart';
+import 'package:wave/config.dart';
 class Myscreen extends StatefulWidget {
   const Myscreen({super.key});
 
@@ -19,7 +20,7 @@ class _MyscreenState extends State<Myscreen> {
   void initState(){
     super.initState();
     Future.delayed(const Duration(seconds: 4)).then((value){
-      Get.to(Login());
+      Get.to(()=>const Login());
     });
   }
   @override
@@ -32,53 +33,34 @@ class _MyscreenState extends State<Myscreen> {
       return MaterialApp(
           home: Scaffold(
             body: SizedBox(
-                width: widthR.w,
-                height:heightR.h,
+                width: widthR,
+                height:heightR,
                 child: Stack(children:[
-                  FadeInDown(
-                    child: Container(
-                      width:widthR,
-                      height:heightR/2,
-                      decoration: BoxDecoration(
-                          color: Colors.deepPurple[200],
-                          borderRadius:const BorderRadius.only(
-                              bottomRight: Radius.circular(1000),
-                              bottomLeft: Radius.circular(1000))),
-                    ),
-                    delay: const Duration(milliseconds: 500),),
-                  Positioned(
-                    top: 150.h,
-                    left: 75.w,
-                    child: FadeInUp(
-                      delay: const Duration(milliseconds: 600),
-                      child: SizedBox(
-                        width: widthR/1.5,
-                        height: heightR/10,
-                        child: Center(
-                          child: Text(
-                            "CeG in your area",
-                            style: GoogleFonts.bebasNeue(
-                                color: Colors.white,
-                                fontSize: 40.sp,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  FadeInUp(
+                    child: WaveWidget(
+                    config: CustomConfig(
+                    gradients: [
+                      [Colors.white,Colors.purple],
+                    [Colors.white,Colors.purple],
+                      [Colors.white,Colors.white],
+                    ],
+                    durations: [3500,10000,6000],
+                    heightPercentages:[0.35,0.45,0.75]
+                ),
+              size: Size(widthR,heightR),
+            ),
+                    delay: const Duration(milliseconds: 500),
+                    duration: const Duration(milliseconds: 1000),),
                   Positioned(
                     top: 225,
-                    left: 140,
+                    left: widthR/3.15,
                     child: FadeInUp(
                       delay: const Duration(milliseconds: 900),
-                      child: Spin(
-                        delay: const Duration(milliseconds: 1000),
                         child: SizedBox(
                           width: widthR/3,
                           height: heightR/3,
                           child: Center(child: Image.asset('assets/images/2.png',width:widthR,height: heightR,)),
                         ),
-                      ),
                     ),
                   ),
                   Positioned(
@@ -102,7 +84,7 @@ class _MyscreenState extends State<Myscreen> {
                     ),
                   ),
                   Positioned(
-                    bottom: 200,
+                    bottom: 150,
                     left: 75,
                     child: FadeInRight(
                       delay: const Duration(milliseconds: 1300),
@@ -122,8 +104,8 @@ class _MyscreenState extends State<Myscreen> {
                     ),
                   ),
                   Positioned(
-                    bottom: 200,
-                    left: 145,
+                    bottom: 150,
+                    left: widthR/2.7,
                     child: FadeInUp(
                       delay: const Duration(milliseconds: 1300),
                       child: SizedBox(
@@ -136,7 +118,7 @@ class _MyscreenState extends State<Myscreen> {
                     ),
                   ),
                   Positioned(
-                    bottom: 200,
+                    bottom: 150,
                     right: 50,
                     child: FadeInLeft(
                       delay: const Duration(milliseconds: 1300),
