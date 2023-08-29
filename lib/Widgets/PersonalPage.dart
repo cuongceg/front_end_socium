@@ -1,3 +1,4 @@
+import 'package:app/Login/SignIn.dart';
 import 'package:app/Widgets/Proflie.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -205,6 +206,46 @@ class ProfileScreen extends StatelessWidget {
                           leading:const Icon(Icons.library_books_outlined),
                           title: Text('Write our Biography and Hobby',style: GoogleFonts.roboto(fontSize: 18))
                       )),
+                ),
+              ),
+              const Divider(
+                height: 10,
+                thickness: 0.5,
+                color: Colors.black,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Change Password',style: GoogleFonts.roboto(fontSize: 20,color: Colors.black,fontWeight: FontWeight.bold)),
+                    IconButton(
+                      onPressed:(){},
+                      icon: Icon(Icons.settings),
+                      iconSize: 25,
+                    )
+                  ],
+                ),
+              ),
+              const Divider(
+                height: 10,
+                thickness: 0.5,
+                color: Colors.black,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Log Out',style: GoogleFonts.roboto(fontSize: 20,color: Colors.black,fontWeight: FontWeight.bold)),
+                    IconButton(
+                      onPressed:(){
+                          Get.to(()=>const Login());
+                        },
+                      icon: Icon(Icons.logout,color: Colors.black,),
+                      iconSize: 25,
+                    )
+                  ],
                 ),
               ),
             ],
