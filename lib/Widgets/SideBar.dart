@@ -1,4 +1,5 @@
 import 'package:app/Login/SignIn.dart';
+import 'package:app/Widgets/PersonalPage.dart';
 import 'package:app/Widgets/Proflie.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,90 +32,41 @@ class _SlideBarState extends State<SlideBar> {
                 ),
               ),
               ListTile(
-                leading: const badges.Badge(
-                  badgeAnimation: badges.BadgeAnimation.slide(
-                    animationDuration: Duration(seconds: 1),
-                    colorChangeAnimationDuration: Duration(seconds: 1),
-                    loopAnimation: false,
-                    curve: Curves.fastOutSlowIn,
-                    colorChangeAnimationCurve: Curves.easeInCubic,
-                  ),
-                  badgeContent: Text('2'),
-                  badgeStyle: badges.BadgeStyle(
-                      badgeColor:Colors.blue,
-                      shape: badges.BadgeShape.circle
-                  ),
-                  child: Icon(Icons.people_alt),
-                ),
-                title: const Text('Friends'),
+                leading: const Icon(Icons.alarm),
+                title: const Text('Group A will start in 7:00h'),
                 onTap: (){},
               ),
-              ListTile(
-                leading:const badges.Badge(
-                  badgeAnimation: badges.BadgeAnimation.slide(
-                  animationDuration: Duration(seconds: 1),
-                  colorChangeAnimationDuration: Duration(seconds: 1),
-                  loopAnimation: false,
-                  curve: Curves.fastOutSlowIn,
-                  colorChangeAnimationCurve: Curves.easeInCubic,
-                 ),
-                badgeContent: Text('2'),
-                badgeStyle: badges.BadgeStyle(
-                badgeColor:Colors.blue,
-                shape: badges.BadgeShape.circle
-                ),
-                  child: Icon(Icons.notifications),
-                ),
-                title: const Text('Notifications'),
-                onTap: (){
-                  showBottomSheet<void>
-                    (context: context,
-                      builder:(BuildContext context){
-                      return Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: Colors.deepPurple,width: 2),
-                        ),
-                        child: ListView(
-                          children: const [
-                            Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Text('You have a new request from Tran Bao Ngoc',),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Text('You have a new request from Huy Nam'),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Text('You have a new request from Mai Yen Nhi'),
-                            ),
-                          ],
-                        ),
-                      );
-                      }
-                  );
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.update),
-                title: const Text('Update Profile'),
-                onTap: (){
-                  Get.to(()=>MyProfileWidget());
-                },
+              const Divider(
+                indent: 1,
+                endIndent: 0.5,
+                height: 10,
+                thickness: 0.5,
+                color: Colors.black,
               ),
               ListTile(
                 leading: const Icon(Icons.settings),
-                title: const Text('Change password'),
+                title: const Text('Change password successfully'),
                 onTap: (){},
               ),
+              const Divider(
+                indent: 1,
+                endIndent: 0.5,
+                height: 10,
+                thickness: 0.5,
+                color: Colors.black,
+              ),
               ListTile(
-                leading:const Icon(Icons.logout),
-                title: const Text('Log out'),
-                onTap: (){
-                  Get.to(()=>Login());
-                },
-              )
+                leading:const Icon(Icons.people),
+                title: const Text('Admin add you to group'),
+                onTap: (){},
+              ),
+              const Divider(
+                indent: 1,
+                endIndent: 0.5,
+                height: 10,
+                thickness: 0.5,
+                color: Colors.black,
+              ),
             ],
           ),
         );
