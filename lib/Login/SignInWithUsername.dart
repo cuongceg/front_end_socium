@@ -25,7 +25,7 @@ class _LoginWithUsernameState extends State<LoginWithUsername>{
     double heightR=MediaQuery.of(context).size.height;
     double widthR=MediaQuery.of(context).size.width;
     return AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle(
+        value: const SystemUiOverlayStyle(
           statusBarColor: Colors.white,
         ),
         child:SafeArea(
@@ -45,13 +45,13 @@ class _LoginWithUsernameState extends State<LoginWithUsername>{
                     key: _formkey,
                     child:ListView(
                       children:<Widget>[
-                        Text('Sign in with username',style: GoogleFonts.roboto(fontSize: 33,color: Colors.black,fontWeight: FontWeight.bold),),
+                        Text('Log in with username',style: GoogleFonts.roboto(fontSize: 33,color: Colors.black,fontWeight: FontWeight.bold),),
                         Container(
                           color: Colors.white,
                           height: heightR/20,
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 30),
+                          padding: EdgeInsets.symmetric(horizontal:widthR/13),
                           child: TextFormField(
                             controller: UserNameEditingController,
                             onChanged: (text){
@@ -83,7 +83,7 @@ class _LoginWithUsernameState extends State<LoginWithUsername>{
                           endIndent: widthR/10,
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 30),
+                          padding: EdgeInsets.symmetric(horizontal:widthR/13),
                           child: TextFormField(
                             controller:passwordEditingController ,
                             obscureText: hint,
@@ -141,7 +141,7 @@ class _LoginWithUsernameState extends State<LoginWithUsername>{
                             child: Container(
                               decoration:BoxDecoration(
                                   color: Colors.deepPurple[300],
-                                  borderRadius: BorderRadius.all(Radius.circular(20))
+                                  borderRadius: const BorderRadius.all(Radius.circular(20))
                               ),
                               child: TextButton(
                                   onPressed:() async{
