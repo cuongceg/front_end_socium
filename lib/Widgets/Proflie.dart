@@ -88,10 +88,12 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                     children: [
                       const Text('  Gender: '),
                       SizedBox(
-                        width: widthR/4.5,
+                        width: widthR/1.3,
                         height: heightR/19,
                         child: DropdownButton(
                           dropdownColor: Colors.white,
+                          isExpanded: true,
+                          icon: Icon(Icons.arrow_downward),
                           underline: const SizedBox(),
                           style: const TextStyle(
                               fontSize: 14,
