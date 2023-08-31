@@ -60,7 +60,7 @@ class _LoginState extends State<Login>{
                               child: Container(
                                 decoration: const BoxDecoration(
                                     color: Colors.white,
-                                  borderRadius: BorderRadius.all(Radius.circular(20))
+                                  borderRadius: BorderRadius.all(Radius.circular(40))
                                 ),
                                 child: TextButton(
                                   onPressed:() async{
@@ -94,7 +94,7 @@ class _LoginState extends State<Login>{
                               child: Container(
                                 decoration: const BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius: BorderRadius.all(Radius.circular(20))
+                                    borderRadius: BorderRadius.all(Radius.circular(40))
                                 ),
                                 child: TextButton(
                                     onPressed:() async{
@@ -128,7 +128,7 @@ class _LoginState extends State<Login>{
                               child: Container(
                                 decoration: const BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius: BorderRadius.all(Radius.circular(20))
+                                    borderRadius: BorderRadius.all(Radius.circular(40))
                                 ),
                                 child: TextButton(
                                     onPressed:() async{

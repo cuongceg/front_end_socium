@@ -141,7 +141,7 @@ class _LoginWithUsernameState extends State<LoginWithUsername>{
                             child: Container(
                               decoration:BoxDecoration(
                                   color: Colors.deepPurple[300],
-                                  borderRadius: const BorderRadius.all(Radius.circular(20))
+                                  borderRadius: const BorderRadius.all(Radius.circular(40))
                               ),
                               child: TextButton(
                                   onPressed:() async{

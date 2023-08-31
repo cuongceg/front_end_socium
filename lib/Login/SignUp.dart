@@ -7,6 +7,7 @@ import 'package:app/Login/SignIn.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
 class SignUp extends StatefulWidget{
+  const SignUp({super.key});
   @override
   State<StatefulWidget> createState() {
     return MySignupState();
@@ -90,7 +91,7 @@ class MySignupState extends State<SignUp>{
                             child: TextFormField(
                               validator: (val) {
                                 if(val==null||val.isEmpty){
-                                  return 'Enter first name';
+                                  return 'Enter name';
                                 }
                                 else
                                 {return null;}
@@ -104,12 +105,12 @@ class MySignupState extends State<SignUp>{
                               decoration: const InputDecoration(
                                   enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
-                                          Radius.circular(20)),
+                                          Radius.circular(40)),
                                       borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
-                                          Radius.circular(20)),
+                                          Radius.circular(40)),
                                       borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
                                   ),
                                   fillColor: Colors.white,
@@ -137,12 +138,12 @@ class MySignupState extends State<SignUp>{
                               decoration: const InputDecoration(
                                   enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
-                                          Radius.circular(20)),
+                                          Radius.circular(40)),
                                       borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
-                                          Radius.circular(20)),
+                                          Radius.circular(40)),
                                       borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
                                   ),
                                   fillColor: Colors.white,
@@ -170,12 +171,12 @@ class MySignupState extends State<SignUp>{
                               decoration: const InputDecoration(
                                   enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
-                                          Radius.circular(20)),
+                                          Radius.circular(40)),
                                       borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
-                                          Radius.circular(20)),
+                                          Radius.circular(40)),
                                       borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
                                   ),
                                   fillColor: Colors.white,
@@ -200,12 +201,12 @@ class MySignupState extends State<SignUp>{
                                 decoration: InputDecoration(
                                   enabledBorder: const OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
-                                          Radius.circular(20)),
+                                          Radius.circular(40)),
                                       borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
                                   ),
                                   focusedBorder: const OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
-                                          Radius.circular(20)),
+                                          Radius.circular(40)),
                                       borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
                                   ),
                                   fillColor: Colors.white,
@@ -245,12 +246,12 @@ class MySignupState extends State<SignUp>{
                                 decoration: InputDecoration(
                                   enabledBorder: const OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
-                                          Radius.circular(20)),
+                                          Radius.circular(40)),
                                       borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
                                   ),
                                   focusedBorder: const OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
-                                          Radius.circular(20)),
+                                          Radius.circular(40)),
                                       borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
                                   ),
                                   fillColor: Colors.white,
@@ -275,7 +276,7 @@ class MySignupState extends State<SignUp>{
                               width:widthR,
                               decoration: BoxDecoration(
                                 color: Colors.deepPurple[300],
-                                borderRadius: const BorderRadius.all(Radius.circular(20))
+                                borderRadius: const BorderRadius.all(Radius.circular(40))
                               ),
                               child: TextButton(
                                 onPressed:()async{
@@ -292,16 +293,26 @@ class MySignupState extends State<SignUp>{
                                     context: context,
                                     builder: (BuildContext context) {
                                       return SizedBox(
-                                        height: 200,
+                                        height:heightR/5,
                                         child: Center(
                                           child: Column(
                                             mainAxisAlignment: MainAxisAlignment.center,
-                                            mainAxisSize: MainAxisSize.max,
                                             children: <Widget>[
-                                              Text('Sign Up successfully',style: GoogleFonts.roboto(fontSize: 23),),
-                                              ElevatedButton(
-                                                child:Text('Sign in',style: GoogleFonts.lato(fontSize: 23),),
-                                                onPressed: () => Get.to(()=>const Login()),
+                                              Text('Sign up successfully',style: GoogleFonts.roboto(fontSize: 23),),
+                                              Padding(
+                                                padding: const EdgeInsets.all(20.0),
+                                                child: Container(
+                                                  width: widthR/4,
+                                                  height: heightR/15,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: const BorderRadius.all(Radius.circular(40)),
+                                                    color: Colors.deepPurple[300]
+                                                  ),
+                                                  child: TextButton(
+                                                    child:Text('Sign in',style: GoogleFonts.roboto(fontSize: 23,color:Colors.white),),
+                                                    onPressed: () => Get.to(()=>const Login()),
+                                                  ),
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -329,7 +340,7 @@ class MySignupState extends State<SignUp>{
                             error,
                             style: TextStyle(
                                 color: Colors.red[500],
-                                fontSize: 14
+                                fontSize: 22
                             ),
                           )
                         ],

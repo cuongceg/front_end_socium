@@ -62,7 +62,7 @@ class ProfileScreen extends StatelessWidget {
                   width: widthR/2,
                   height: heightR/15,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(40),
                       color: Colors.white,
                       border: Border.all(
                         color: Colors.black
@@ -81,7 +81,7 @@ class ProfileScreen extends StatelessWidget {
                   width: widthR/2,
                   height: heightR/15,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(40),
                       color: Colors.white,
                       border: Border.all(
                           color: Colors.black
@@ -100,7 +100,7 @@ class ProfileScreen extends StatelessWidget {
                   width: widthR/2,
                   height: heightR/15,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(40),
                       color: Colors.white,
                       border: Border.all(
                           color: Colors.black
@@ -119,7 +119,7 @@ class ProfileScreen extends StatelessWidget {
                   width: widthR/2,
                   height: heightR/16,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(40),
                       color: Colors.white,
                       border: Border.all(
                           color: Colors.black
@@ -138,7 +138,7 @@ class ProfileScreen extends StatelessWidget {
                   width: widthR/2,
                   height: heightR/16,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(40),
                       color: Colors.white,
                       border: Border.all(
                           color: Colors.black
@@ -157,7 +157,7 @@ class ProfileScreen extends StatelessWidget {
                   width: widthR/2,
                   height: heightR/16,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(40),
                       color: Colors.white,
                       border: Border.all(
                           color: Colors.black
@@ -195,7 +195,7 @@ class ProfileScreen extends StatelessWidget {
                   width: widthR/2,
                   height: heightR/16,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(40),
                       color: Colors.white,
                       border: Border.all(
                           color: Colors.black

@@ -61,12 +61,12 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                   decoration: const InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                              Radius.circular(20)),
+                              Radius.circular(40)),
                           borderSide: BorderSide(color: Colors.black,width:2.0)
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                              Radius.circular(20)),
+                              Radius.circular(40)),
                           borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
                       ),
                       fillColor: Colors.white,
@@ -82,7 +82,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                   decoration:BoxDecoration(
                       color: Colors.white,
                       border: Border.all(color: Colors.black,width: 2),
-                      borderRadius: BorderRadius.circular(20)
+                      borderRadius: BorderRadius.circular(40)
                   ),
                   child: Row(
                     children: [
@@ -129,12 +129,12 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                   decoration: const InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                              Radius.circular(20)),
+                              Radius.circular(40)),
                           borderSide: BorderSide(color: Colors.black,width:2.0)
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                              Radius.circular(20)),
+                              Radius.circular(40)),
                           borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
                       ),
                       fillColor: Colors.white,
@@ -155,12 +155,12 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                   decoration: const InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                              Radius.circular(20)),
+                              Radius.circular(40)),
                           borderSide: BorderSide(color: Colors.black,width:2.0)
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                              Radius.circular(20)),
+                              Radius.circular(40)),
                           borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
                       ),
                       fillColor: Colors.white,
@@ -181,12 +181,12 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                   decoration: const InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                              Radius.circular(20)),
+                              Radius.circular(40)),
                           borderSide: BorderSide(color: Colors.black,width:2.0)
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                              Radius.circular(20)),
+                              Radius.circular(40)),
                           borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
                       ),
                       fillColor: Colors.white,
@@ -207,12 +207,12 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                   decoration: const InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                              Radius.circular(20)),
+                              Radius.circular(40)),
                           borderSide: BorderSide(color: Colors.black,width:2.0)
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                              Radius.circular(20)),
+                              Radius.circular(40)),
                           borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
                                     ),
                                     fillColor: Colors.white,

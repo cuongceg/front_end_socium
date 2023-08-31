@@ -203,7 +203,7 @@ class _topModelState extends State<topModel> {
                   overlayColor: Colors.purple,
                   selectedStyle: const C2ChipStyle(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(20),
+                      Radius.circular(40),
                     ),
                   ),
                 ),
@@ -224,7 +224,7 @@ class _topModelState extends State<topModel> {
             child: Container(
               width: widthR,
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
+                borderRadius: const BorderRadius.all(Radius.circular(40)),
                 color: Colors.white,
                 border: Border.all(color: Colors.black)
               ),
@@ -238,7 +238,7 @@ class _topModelState extends State<topModel> {
                 dropdownColor: Colors.white,
                 underline: const SizedBox(),
                 isExpanded: true,
-                icon: Icon(Icons.arrow_downward,color:Colors.purple[100],),
+                icon: Icon(Icons.arrow_drop_down_sharp,color:Colors.purple[100],),
                 style: const TextStyle(
                     fontSize: 14,
                     color: Colors.black87
@@ -257,7 +257,7 @@ class _topModelState extends State<topModel> {
               child: SizedBox(
                   height: heightR/20,
                   width: widthR,
-                  child: Text('Study',style: GoogleFonts.roboto(fontSize:22,color: Colors.black,fontWeight: FontWeight.bold),
+                  child: Text('Age',style: GoogleFonts.roboto(fontSize:22,color: Colors.black,fontWeight: FontWeight.bold),
                   )
               )
           ),
