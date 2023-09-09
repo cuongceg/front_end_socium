@@ -1,11 +1,11 @@
-import 'package:app/Widgets/profile_screen.dart';
-import 'package:app/Widgets/swipe_card.dart';
+import 'package:app/pages/profile_screen.dart';
+import 'package:app/pages/swipe_card.dart';
 import 'package:app/models/time_study.dart';
 import 'package:app/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:top_modal_sheet/top_modal_sheet.dart';
 import 'package:app/Widgets/sidebar.dart';
-import 'package:app/Widgets/calendar.dart';
+import 'package:app/pages/calendar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

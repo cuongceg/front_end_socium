@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'utlis.dart';
+import 'package:app/widgets/utlis.dart';
 
 class TableEventsExample extends StatefulWidget {
   const TableEventsExample({super.key});
