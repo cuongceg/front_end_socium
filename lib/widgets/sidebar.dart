@@ -1,10 +1,7 @@
-import 'package:app/Login/SignIn.dart';
-import 'package:app/Widgets/PersonalPage.dart';
-import 'package:app/Widgets/Proflie.dart';
+import 'package:app/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:badges/badges.dart'as badges;
-import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 class SlideBar extends StatefulWidget {
   const SlideBar({super.key});
   @override
@@ -14,13 +11,14 @@ class SlideBar extends StatefulWidget {
 class _SlideBarState extends State<SlideBar> {
   @override
   Widget build(BuildContext context) {
+    final authList=Provider.of<List<Auth>?>(context);
     return Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
                UserAccountsDrawerHeader(
-                accountName: Text('cuongceg',style:GoogleFonts.roboto(fontSize:14,fontWeight:FontWeight.bold)),
-                accountEmail: Text('Cuong.DM225172@sis.hust.edu.vn',style:GoogleFonts.roboto(fontSize: 15)),
+                accountName: Text('Hello,',style:GoogleFonts.playfairDisplay(fontSize:20,fontWeight:FontWeight.bold,fontStyle: FontStyle.italic)),
+                accountEmail: Text(authList==null?'':authList[0].username!,style:GoogleFonts.roboto(fontSize: 17)),
                 currentAccountPicture:const CircleAvatar(
                   backgroundImage: AssetImage('assets/images/avatarimage.png'),
                 ),
