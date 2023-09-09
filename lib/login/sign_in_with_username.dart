@@ -1,8 +1,9 @@
 import 'package:app/Login/SignIn.dart';
+import 'package:app/Widgets/HomePage.dart';
+import 'package:app/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:app/Widgets/Loading.dart';
-import 'package:app/Widgets/HomePage.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 class LoginWithUsername extends StatefulWidget{
@@ -12,9 +13,10 @@ class LoginWithUsername extends StatefulWidget{
   _LoginWithUsernameState createState() => _LoginWithUsernameState();
 }
 class _LoginWithUsernameState extends State<LoginWithUsername>{
+  AuthService auth=AuthService();
   final _formkey =GlobalKey<FormState>();
   String _username='',_password='',error='';
-  final UserNameEditingController=TextEditingController();
+  final userNameEditingController=TextEditingController();
   final passwordEditingController=TextEditingController();
   bool hint=true;
   void toggleView(){
@@ -53,7 +55,7 @@ class _LoginWithUsernameState extends State<LoginWithUsername>{
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal:widthR/13),
                           child: TextFormField(
-                            controller: UserNameEditingController,
+                            controller: userNameEditingController,
                             onChanged: (text){
                               setState(() {
                                 _username=text;
@@ -145,14 +147,13 @@ class _LoginWithUsernameState extends State<LoginWithUsername>{
                               ),
                               child: TextButton(
                                   onPressed:() async{
-                                    setState(() {
-                                    });
-                                    await Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
-                                    // dynamic result= await _auth.signInemailandpassword(_email, _password);
-                                    // if(result == null){
-                                    //   setState(() => error ='Invalid email or wrong password,please try again!' );
-                                    //   loading=false;
-                                    //}
+                                    dynamic result= await auth.signInemailandpassword(_username, _password);
+                                    if(result == null){
+                                      setState(() => error ='Invalid email or wrong password,please try again!' );
+                                    }
+                                    else{
+                                      Get.to(()=>const HomePage());
+                                    }
                                   },
                                   child:Text(
                                       "LOGIN",

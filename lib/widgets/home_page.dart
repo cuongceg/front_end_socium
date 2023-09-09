@@ -1,4 +1,6 @@
 import 'package:app/Widgets/PersonalPage.dart';
+import 'package:app/services/database.dart';
+import 'package:provider/provider.dart';
 import 'package:top_modal_sheet/top_modal_sheet.dart';
 import 'package:app/Widgets/SideBar.dart';
 import 'package:app/Widgets/calendar.dart';
@@ -9,18 +11,18 @@ import 'package:chips_choice/chips_choice.dart';
 import 'package:badges/badges.dart'as badges;
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:intl/intl.dart';
+import 'package:app/models/user.dart';
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
-
   @override
   _HomePageState createState() => _HomePageState();
 }
 class _HomePageState extends State<HomePage> {
   String? _topModelData;
   int _selectedIndex = 0;
-  static List<Widget> _widgetOptions = <Widget>[
+  static List<Widget> widgetOptions = <Widget>[
     const Text("trang 1"),
-    TableEventsExample(),
+    const TableEventsExample(),
     const Text('trang 3'),
     const ProfileScreen()
   ];
@@ -29,6 +31,7 @@ class _HomePageState extends State<HomePage> {
       _selectedIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -36,107 +39,111 @@ class _HomePageState extends State<HomePage> {
             statusBarColor: Colors.white
         )
     );
-    return Scaffold(
-        drawer: const SlideBar(),
-        appBar: AppBar(
+    return StreamProvider<List<Auth>?>.value(
+      value: DatabaseService().authData,
+      initialData:null,
+      child: Scaffold(
+          drawer: const SlideBar(),
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            title:Text('Socium',style: GoogleFonts.roboto(color: Colors.black,fontSize:22),),
+            centerTitle: true,
+            leading: Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                  icon:const badges.Badge(
+                    badgeAnimation:badges.BadgeAnimation.slide(
+                      animationDuration: Duration(seconds: 1),
+                      colorChangeAnimationDuration: Duration(seconds: 1),
+                      loopAnimation: false,
+                      curve: Curves.fastOutSlowIn,
+                      colorChangeAnimationCurve: Curves.easeInCubic,
+                    ),
+                    badgeContent:Text('3'),
+                    badgeStyle:badges.BadgeStyle(
+                        badgeColor:Colors.blueAccent,
+                        shape: badges.BadgeShape.circle
+                    ),
+                    child: Icon(Icons.notifications_active_outlined,color:Colors.black,),
+                  ),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+                );
+              },
+            ),
+            actions: [
+              IconButton(
+                  onPressed:()async{
+                    var value=await showTopModalSheet<String?>(context,const TopModel());
+                    setState(() {
+                      _topModelData=value;
+                    });
+                  },
+                  icon:Image.asset('assets/images/filter1.png',width:30,height:25,),)
+            ],
+          ),
           backgroundColor: Colors.white,
-          title:Text('Socium',style: GoogleFonts.roboto(color: Colors.black,fontSize:22),),
-          centerTitle: true,
-          leading: Builder(
-            builder: (BuildContext context) {
-              return IconButton(
-                icon:const badges.Badge(
-                  badgeAnimation:badges.BadgeAnimation.slide(
+          body: Center(
+            child: widgetOptions.elementAt(_selectedIndex),
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home,color:Colors.purple[100],),
+                  label: 'Home',
+                  tooltip:'Home'
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.calendar_month,color:Colors.purple[100],),
+                label: 'Calendar',
+                tooltip:'Calendar',
+              ),
+              BottomNavigationBarItem(
+                icon: badges.Badge(
+                  badgeAnimation: const badges.BadgeAnimation.slide(
                     animationDuration: Duration(seconds: 1),
                     colorChangeAnimationDuration: Duration(seconds: 1),
                     loopAnimation: false,
                     curve: Curves.fastOutSlowIn,
                     colorChangeAnimationCurve: Curves.easeInCubic,
                   ),
-                  badgeContent:Text('3'),
-                  badgeStyle:badges.BadgeStyle(
+                  badgeContent: const Text('2'),
+                  badgeStyle: const badges.BadgeStyle(
                       badgeColor:Colors.blueAccent,
                       shape: badges.BadgeShape.circle
                   ),
-                  child: Icon(Icons.notifications_active_outlined,color:Colors.black,),
+                  child: Icon(Icons.message_outlined,color:Colors.purple[100],),
                 ),
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-              );
-            },
-          ),
-          actions: [
-            IconButton(
-                onPressed:()async{
-                  var value=await showTopModalSheet<String?>(context,const topModel());
-                  setState(() {
-                    _topModelData=value;
-                  });
-                },
-                icon:Image.asset('assets/images/filter1.png',width:30,height:25,),)
-          ],
-        ),
-        backgroundColor: Colors.white,
-        body: Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home,color:Colors.purple[100],),
-                label: 'Home',
-                tooltip:'Home'
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_month,color:Colors.purple[100],),
-              label: 'Calendar',
-              tooltip:'Calendar',
-            ),
-            BottomNavigationBarItem(
-              icon: badges.Badge(
-                badgeAnimation: const badges.BadgeAnimation.slide(
-                  animationDuration: Duration(seconds: 1),
-                  colorChangeAnimationDuration: Duration(seconds: 1),
-                  loopAnimation: false,
-                  curve: Curves.fastOutSlowIn,
-                  colorChangeAnimationCurve: Curves.easeInCubic,
-                ),
-                badgeContent: const Text('2'),
-                badgeStyle: const badges.BadgeStyle(
-                    badgeColor:Colors.blueAccent,
-                    shape: badges.BadgeShape.circle
-                ),
-                child: Icon(Icons.message_outlined,color:Colors.purple[100],),
+                label: 'Chat',
+                tooltip:'Chat',
               ),
-              label: 'Chat',
-              tooltip:'Chat',
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person,color:Colors.purple[100],),
-                tooltip: 'Profile',
-                label: 'Profile'
-            )
-          ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.purple[100],
-          onTap: _onItemTapped,
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.person,color:Colors.purple[100],),
+                  tooltip: 'Profile',
+                  label: 'Profile'
+              )
+            ],
+            currentIndex: _selectedIndex,
+            selectedItemColor: Colors.purple[100],
+            onTap: _onItemTapped,
+          ),
         ),
-      );
+    );
   }
 }
-class topModel extends StatefulWidget {
-  const topModel({super.key});
+class TopModel extends StatefulWidget {
+  const TopModel({super.key});
   @override
-  State<topModel> createState() => _topModelState();
+  State<TopModel> createState() => _TopModelState();
 }
 
-class _topModelState extends State<topModel> {
-  List<String>Study=['Online','Offline','Both of them'];
-  List<String>Options=['Morning','Afternoon','Evening'];
+class _TopModelState extends State<TopModel> {
+  List<String>study=['Online','Offline','Both of them'];
+  List<String>options=['Morning','Afternoon','Evening'];
   List<String> tags = ['Education'];
-  String? Study_choose;
+  String? studyChoose;
   SfRangeValues _values = SfRangeValues(DateTime(18, 01,18), DateTime(20, 01,20));
   @override
   Widget build(BuildContext context) {
@@ -191,7 +198,7 @@ class _topModelState extends State<topModel> {
                 onChanged:(val)=>setState(()=>tags=val),
                 choiceItems:C2Choice.listFrom<String, String>(
                   label:(i, v) => v,
-                  source:Options,
+                  source: options,
                   value:(i, v) => v,
                   tooltip: (i, v) => v,
                 ),
@@ -229,7 +236,7 @@ class _topModelState extends State<topModel> {
                 border: Border.all(color: Colors.black)
               ),
               child: DropdownButton(
-                items:Study.map((time){
+                items:study.map((time){
                     return DropdownMenuItem(
                         value: time,
                         child: Text(time)
@@ -243,10 +250,10 @@ class _topModelState extends State<topModel> {
                     fontSize: 14,
                     color: Colors.black87
                 ),
-                value: Study_choose??Study[0],
+                value: studyChoose??study[0],
                 onChanged:(newTime){
                   setState(() {
-                    Study_choose = newTime;
+                    studyChoose = newTime;
                   });
                 } ,
               ),
@@ -261,7 +268,7 @@ class _topModelState extends State<topModel> {
                   )
               )
           ),
-          Container(
+          SizedBox(
             height: 80,
             width: widthR,
             child: SfRangeSlider(

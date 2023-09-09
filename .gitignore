@@ -43,4 +43,4 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 #widgets
-/lib/Widgets/SearchPage.dart
+/lib/widgets/update_password.dart
