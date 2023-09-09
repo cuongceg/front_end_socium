@@ -1,4 +1,4 @@
-import 'package:app/Widgets/wrapper_screen.dart';
+import 'package:app/pages/wrapper_screen.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
