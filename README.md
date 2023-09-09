@@ -1,8 +1,10 @@
-Socium Mobile App
+# Socium Mobile App
+
 A small social media app that connects studying communities together
 
 ### Folder structure
 
+```
 ├── android/ - Contains build artifacts for Android
 ├── assets/ - Contains static files (images, videos, audios)
 ├── ios/ - Contains build artifacts for iOS
@@ -21,10 +23,11 @@ A small social media app that connects studying communities together
 ├── pubspec.lock - Contains exact, locked version of dependencies
 ├── pubspec.yaml - Contains approximate version of dependencies
 ├── README.md - This documents
+```
 
 ### Dependencies:
 
-All of the dependencies are listed in [pubspec.yaml](pubspec.yaml).
+> _All of the dependencies are listed in [pubspec.yaml](pubspec.yaml).
 
 * [cupertino_icons](https://pub.dev/packages/cupertino_icons): Default icons asset for Cupertino widgets based on Apple styled icons
 
