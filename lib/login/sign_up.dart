@@ -1,9 +1,9 @@
-import 'package:app/Login/SignInWithUsername.dart';
+import 'package:app/Login/sign_in_with_username.dart';
 import 'package:flutter/material.dart';
 import 'package:app/services/auth.dart';
-import 'package:app/Widgets/Loading.dart';
+import 'package:app/pages/loading_screen.dart';
 import 'package:get/get.dart';
-import 'package:app/Login/SignIn.dart';
+import 'package:app/Login/sign_in.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
 import 'package:app/services/database.dart';
@@ -298,7 +298,7 @@ class MySignupState extends State<SignUp>{
                                       setState(() => error ='Please sign up a valid email and try again!' );
                                     }
                                     else{
-                                      await DatabaseService(uid: result.uid).updateProfile(firstName, userName,'Ha Noi','Male','4.0','FPT',_email);
+                                      await DatabaseService(uid: result.uid).updateProfile(firstName, userName,'18','Ha Noi','Male','10.0','FPT');
                                       showModalBottomSheet<void>(
                                         context: context,
                                         builder: (BuildContext context) {
