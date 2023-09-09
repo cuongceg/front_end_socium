@@ -1,11 +1,14 @@
+import 'package:app/Login/SignInWithUsername.dart';
 import 'package:flutter/material.dart';
-// import 'package:lab/services/auth.dart';
-//import 'package:app/Widgets/HomePage.dart';
+import 'package:app/services/auth.dart';
 import 'package:app/Widgets/Loading.dart';
 import 'package:get/get.dart';
 import 'package:app/Login/SignIn.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
+import 'package:app/services/database.dart';
+import 'package:app/models/user.dart';
+
 class SignUp extends StatefulWidget{
   const SignUp({super.key});
   @override
@@ -13,12 +16,13 @@ class SignUp extends StatefulWidget{
     return MySignupState();
   }
 }
+
 class MySignupState extends State<SignUp>{
   bool hint=true;
   bool loading=false;
-  // final AuthService _auth=AuthService();
+  final AuthService auth=AuthService();
   final _formKey =GlobalKey<FormState>();
-  String? first_name,user_name,confirmpassword;
+  String? firstName,userName,confirmpassword;
   String _email='';
   String password='';
   String error='';
@@ -34,6 +38,7 @@ class MySignupState extends State<SignUp>{
   Widget build(BuildContext context){
     double heightR=MediaQuery.of(context).size.height;
     double widthR=MediaQuery.of(context).size.width;
+    // final user = Provider.of<MyUser?>(context);
     return loading?const Loading():AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
         statusBarColor: Colors.white,
@@ -99,7 +104,7 @@ class MySignupState extends State<SignUp>{
                               controller: firstnameEditingController,
                               onChanged: (text){
                                 setState(() {
-                                  first_name=text;
+                                  firstName=text;
                                 });
                               },
                               decoration: const InputDecoration(
@@ -124,7 +129,7 @@ class MySignupState extends State<SignUp>{
                             child: TextFormField(
                               validator: (val) {
                                 if(val==null||val.isEmpty){
-                                  return 'Enter school';
+                                  return 'Enter an user name';
                                 }
                                 else
                                 {return null;}
@@ -132,7 +137,7 @@ class MySignupState extends State<SignUp>{
                               controller: usernameEditingController,
                               onChanged: (text){
                                 setState(() {
-                                  user_name=text;
+                                  userName=text;
                                 });
                               },
                               decoration: const InputDecoration(
@@ -157,7 +162,7 @@ class MySignupState extends State<SignUp>{
                             child: TextFormField(
                               validator: (val) {
                                 if(val==null||val.isEmpty){
-                                  return 'Enter an user name';
+                                  return 'Enter an email';
                                 }
                                 else
                                 {return null;}
@@ -191,6 +196,13 @@ class MySignupState extends State<SignUp>{
                               height: heightR/13,
                               width: widthR,
                               child: TextFormField(
+                                validator: (val) {
+                                  if(val==null||val.isEmpty||val.length<6){
+                                    return 'Enter password has more 6 lettters';
+                                  }
+                                  else
+                                  {return null;}
+                                },
                                 controller:passwordEditingController ,
                                 obscureText: hint,
                                 onChanged: (text){
@@ -280,46 +292,46 @@ class MySignupState extends State<SignUp>{
                               ),
                               child: TextButton(
                                 onPressed:()async{
-                                  // if(_formKey.currentState!.validate()){
-                                  //   //dynamic result=await _auth.signupemailandpassword(_email, password);
-                                  //   if(result == null){
-                                  //     setState(() => error ='Please sign up a valid email and try again!' );
-                                  //   }
-                                  //   else{
-                                  //     await Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
-                                  //   }
-                                  // }
-                                  showModalBottomSheet<void>(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return SizedBox(
-                                        height:heightR/5,
-                                        child: Center(
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: <Widget>[
-                                              Text('Sign up successfully',style: GoogleFonts.roboto(fontSize: 23),),
-                                              Padding(
-                                                padding: const EdgeInsets.all(20.0),
-                                                child: Container(
-                                                  width: widthR/4,
-                                                  height: heightR/15,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: const BorderRadius.all(Radius.circular(40)),
-                                                    color: Colors.deepPurple[300]
+                                  if(_formKey.currentState!.validate()){
+                                    MyUser? result=await auth.signUpEmail(_email, password);
+                                    if(result == null){
+                                      setState(() => error ='Please sign up a valid email and try again!' );
+                                    }
+                                    else{
+                                      await DatabaseService(uid: result.uid).updateProfile(firstName, userName,'Ha Noi','Male','4.0','FPT',_email);
+                                      showModalBottomSheet<void>(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return SizedBox(
+                                            height:heightR/5,
+                                            child: Center(
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: <Widget>[
+                                                  Text('Sign up successfully',style: GoogleFonts.roboto(fontSize: 23),),
+                                                  Padding(
+                                                    padding: const EdgeInsets.all(20.0),
+                                                    child: Container(
+                                                      width: widthR/4,
+                                                      height: heightR/15,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius: const BorderRadius.all(Radius.circular(40)),
+                                                          color: Colors.deepPurple[300]
+                                                      ),
+                                                      child: TextButton(
+                                                        child:Text('Sign in',style: GoogleFonts.roboto(fontSize: 23,color:Colors.white),),
+                                                        onPressed: () => Get.to(()=>const LoginWithUsername()),
+                                                      ),
+                                                    ),
                                                   ),
-                                                  child: TextButton(
-                                                    child:Text('Sign in',style: GoogleFonts.roboto(fontSize: 23,color:Colors.white),),
-                                                    onPressed: () => Get.to(()=>const Login()),
-                                                  ),
-                                                ),
+                                                ],
                                               ),
-                                            ],
-                                          ),
-                                        ),
+                                            ),
+                                          );
+                                        },
                                       );
-                                    },
-                                  );
+                                    }
+                                  }
                                 },
                                 child: const Text(
                                   "Sign up",

@@ -1,30 +1,34 @@
 import 'dart:io';
 import 'package:app/Widgets/HomePage.dart';
 import 'package:app/models/user.dart';
+import 'package:app/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+
 class MyProfileWidget extends StatefulWidget {
   const MyProfileWidget({super.key});
   @override
   State<MyProfileWidget> createState() => _MyProfileWidgetState();
 }
+
 class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderStateMixin{
   late AnimationController controller;
   bool load=false;
-  String? address,_email,_password,_confirmpassword,school,age,cpa;
-  String? gender_choose;
+  String? address,_email,school,age,cpa,name,username;
+  String? genderChoose;
   bool hint =true;
   File ? _selectedImage;
   void toggleView(){
     hint =!hint;
   }
-  List<String>GenderList=['Male','Female','No option'];
+  List<String>genderList=['Male','Female','No option'];
+  final nameEditingController=TextEditingController();
+  final usernameEditingController=TextEditingController();
   final emailEditingController=TextEditingController();
   final adressEditingController=TextEditingController();
-  final passwordEditingController=TextEditingController();
-  final confirmpasswordEditingController=TextEditingController();
   final schoolEditingController=TextEditingController();
   final ageEditingController=TextEditingController();
   final cpaEditingController=TextEditingController();
@@ -33,13 +37,14 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
   Widget build(BuildContext context) {
     double heightR=MediaQuery.of(context).size.height;
     double widthR=MediaQuery.of(context).size.width;
+    final user=Provider.of<MyUser?>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
             icon:const Icon(Icons.arrow_back,size: 30,color: Colors.black,),
             onPressed: (){
-              Get.to(()=>const HomePage());
+              Navigator.pop(context);
             },
         ),
       ),
@@ -49,6 +54,58 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
           child: ListView(
             children: [
               imageProfile(),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: TextFormField(
+                  controller: nameEditingController,
+                  onChanged: (text){
+                    setState(() {
+                      name=text;
+                    });
+                  },
+                  decoration: const InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(40)),
+                          borderSide: BorderSide(color: Colors.black,width:2.0)
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(40)),
+                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                      ),
+                      fillColor: Colors.white,
+                      filled: true,
+                      labelText:'Your Name'
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: TextFormField(
+                  controller: usernameEditingController,
+                  onChanged: (text){
+                    setState(() {
+                      username=text;
+                    });
+                  },
+                  decoration: const InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(40)),
+                          borderSide: BorderSide(color: Colors.black,width:2.0)
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(40)),
+                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                      ),
+                      fillColor: Colors.white,
+                      filled: true,
+                      labelText:'Your Username'
+                  ),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: TextFormField(
@@ -93,19 +150,19 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                         child: DropdownButton(
                           dropdownColor: Colors.white,
                           isExpanded: true,
-                          icon: Icon(Icons.arrow_downward),
+                          icon: const Icon(Icons.arrow_drop_down,size: 30,),
                           underline: const SizedBox(),
                           style: const TextStyle(
                               fontSize: 14,
                               color: Colors.black87
                           ),
-                          value: gender_choose??GenderList[0],
+                          value: genderChoose??genderList[0],
                           onChanged:(newGender){
                             setState(() {
-                              gender_choose = newGender;
+                              genderChoose = newGender;
                             });
                           } ,
-                          items: GenderList.map((gender){
+                          items: genderList.map((gender){
                             return DropdownMenuItem(
                               value: gender,
                               child: Text(gender),
@@ -235,7 +292,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                       style: GoogleFonts.roboto(fontSize: 20,color:Colors.white)
                     ),
                     onPressed: (){
-                      User(_email,address,school, age, cpa,gender_choose);
+                      DatabaseService(uid:user!.uid).updateProfile(name, username, address, genderChoose, cpa, school,_email!);
                       final snackBar = SnackBar(
                         backgroundColor:Colors.purple[100],
                         content: const Text('Wait a minutes...'),
@@ -244,7 +301,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                           textColor: Colors.black,
                           onPressed: () {
                             setState(() {
-                              load=true;
+                              Get.to(()=>const MyProfileWidget());
                             });
                           },
                         ),
