@@ -16,7 +16,7 @@ class AuthService{
       UserCredential result= await auth.createUserWithEmailAndPassword(email: email, password: password);
       User? user=result.user;
       //create a doc with uid above
-      await DatabaseService(uid: user!.uid).updateDatabase('00','00','Your name','Test','Calculus');
+      await DatabaseService(uid:'0').updateDatabase('12','00','Đỗ Mạnh Cường','N&F','Calculus 1','true','A default group','No');
       return userFromFirebase(user);
     }catch(e){
       print(e.toString());
