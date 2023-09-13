@@ -2,7 +2,52 @@
 
 A small social media app that connects studying communities together
 
-### Folder structure
+## In this document:
+
+1. [How to run this project?](#how-to-run-this-project)
+2. [Folder structure](#folder-structure)
+3. [Dependencies](#dependencies)
+
+## How to run this project?
+
+> ⚠️ **Make sure Flutter CLI is installed.**
+
+1. Clone this repository:
+
+```
+git clone https://github.com/cuongceg/front_end_socium.git
+```
+
+2. Install all dependencies (libraries):
+
+```
+flutter pub get
+```
+
+3. Run the project:
+
+```
+flutter run
+```
+
+Using this command, the terminal will look somthing like this:
+
+```
+Connected devices:
+Windows (desktop) • windows • windows-x64    • Microsoft Windows [Version 10.0.22621.2134]
+Chrome (web)      • chrome  • web-javascript • Google Chrome 116.0.5845.187
+Edge (web)        • edge    • web-javascript • Microsoft Edge 116.0.1938.76
+[1]: Windows (windows)
+[2]: Chrome (chrome)
+[3]: Edge (edge)
+Please choose one (or "q" to quit):
+```
+
+If you have an [Android virtual device](https://developer.android.com/studio/run/managing-avds?hl=en), or an Android Device connected via USB that enabled [USB Debugging](https://developer.android.com/studio/debug/dev-options?hl=en#debugging), it will show up in the connected devices as well.
+
+Running the app on mobile devices is recommended.
+
+## Folder structure
 
 ```
 ├── android/ - Contains build artifacts for Android
@@ -25,7 +70,7 @@ A small social media app that connects studying communities together
 ├── README.md - This documents
 ```
 
-### Dependencies:
+## Dependencies:
 
 > _All of the dependencies are listed in [pubspec.yaml](pubspec.yaml).
 
