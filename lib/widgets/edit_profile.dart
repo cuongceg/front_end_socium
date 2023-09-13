@@ -54,7 +54,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
             children: [
               imageProfile(),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15),
                 child: TextFormField(
                   controller: nameEditingController,
                   onChanged: (text){
@@ -80,7 +80,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15),
                 child: TextFormField(
                   controller: usernameEditingController,
                   onChanged: (text){
@@ -106,7 +106,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15),
                 child: Container(
                   height: heightR/14,
                   decoration:BoxDecoration(
@@ -118,7 +118,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                     children: [
                       const Text('  Gender: '),
                       SizedBox(
-                        width: widthR/1.3,
+                        width: widthR/1.4,
                         height: heightR/19,
                         child: DropdownButton(
                           dropdownColor: Colors.white,
@@ -148,7 +148,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15),
                 child: TextFormField(
                   controller: ageEditingController,
                   onChanged: (text){
@@ -174,7 +174,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15),
                 child: TextFormField(
                   controller: adressEditingController,
                   onChanged: (text){
@@ -200,7 +200,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15),
                 child: TextFormField(
                   controller: schoolEditingController,
                   onChanged: (text){
@@ -226,7 +226,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15),
                 child: TextFormField(
                   controller: cpaEditingController,
                   onChanged: (text){
@@ -252,7 +252,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical:10.0,horizontal:60),
+                padding: const EdgeInsets.symmetric(vertical:20.0,horizontal:60),
                 child: Container(
                   width: widthR/13,
                   decoration: const BoxDecoration(
