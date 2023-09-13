@@ -1,10 +1,7 @@
-import 'package:app/Login/SignIn.dart';
-import 'package:app/Widgets/PersonalPage.dart';
-import 'package:app/Widgets/Proflie.dart';
+import 'package:app/models/time_study.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:badges/badges.dart'as badges;
-import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 class SlideBar extends StatefulWidget {
   const SlideBar({super.key});
   @override
@@ -14,62 +11,43 @@ class SlideBar extends StatefulWidget {
 class _SlideBarState extends State<SlideBar> {
   @override
   Widget build(BuildContext context) {
+    final studyList=Provider.of<List<TimeStudy>?>(context);
+    double widthR=MediaQuery.of(context).size.width;
+    double heightR=MediaQuery.of(context).size.height;
+    final heading=GoogleFonts.roboto(color: Colors.black,fontSize: 22,fontWeight: FontWeight.bold);
+    final body=GoogleFonts.roboto(color:Colors.black,fontSize:20);
+    final smallBody=GoogleFonts.roboto(color: Colors.black,fontSize:15);
     return Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-               UserAccountsDrawerHeader(
-                accountName: Text('cuongceg',style:GoogleFonts.roboto(fontSize:14,fontWeight:FontWeight.bold)),
-                accountEmail: Text('Cuong.DM225172@sis.hust.edu.vn',style:GoogleFonts.roboto(fontSize: 15)),
-                currentAccountPicture:const CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/avatarimage.png'),
-                ),
-                decoration:const BoxDecoration(
-                  image: DecorationImage(
-                    image:AssetImage('assets/images/coverimage.png'),
-                    fit: BoxFit.cover
-                  )
-                ),
-              ),
-              ListTile(
-                leading: const Icon(Icons.alarm),
-                title: const Text('Group A will start in 7:00h'),
-                onTap: (){},
-              ),
-              const Divider(
-                indent: 1,
-                endIndent: 0.5,
-                height: 10,
-                thickness: 0.5,
-                color: Colors.black,
-              ),
-              ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text('Change password successfully'),
-                onTap: (){},
-              ),
-              const Divider(
-                indent: 1,
-                endIndent: 0.5,
-                height: 10,
-                thickness: 0.5,
-                color: Colors.black,
-              ),
-              ListTile(
-                leading:const Icon(Icons.people),
-                title: const Text('Admin add you to group'),
-                onTap: (){},
-              ),
-              const Divider(
-                indent: 1,
-                endIndent: 0.5,
-                height: 10,
-                thickness: 0.5,
-                color: Colors.black,
-              ),
-            ],
+      child: ListView(
+        padding: const EdgeInsets.only(top:30),
+        children: [
+          ListTile(
+            leading: const Icon(Icons.menu),
+            title: Text("Notifications",style: heading,),
           ),
-        );
+          const Divider(
+            thickness: 2,
+            indent: 1,
+            endIndent: 0.5,
+            height: 10,
+            color: Colors.black,
+          ),
+          for(var study in studyList!)...[
+            ListTile(
+              leading: Image.asset('assets/images/clock.png',width: widthR/13,height: heightR/13,),
+              title: Text('Group ${study.name!}',style: body,),
+              subtitle: Text('begin at ${study.hour!}:${study.minutes!}',style: smallBody,),
+            ),
+            const Divider(
+              indent: 1,
+              endIndent: 0.5,
+              height: 10,
+              thickness: 0.5,
+              color: Colors.black,
+            ),
+          ]
+        ],
+      ),
+    );
   }
 }
-

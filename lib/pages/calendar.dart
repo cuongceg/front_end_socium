@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'utlis.dart';
+import 'package:app/widgets/utlis.dart';
 
 class TableEventsExample extends StatefulWidget {
   const TableEventsExample({super.key});
@@ -76,6 +76,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           TableCalendar(

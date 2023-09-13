@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:app/Widgets/HomePage.dart';
 import 'package:app/models/user.dart';
 import 'package:app/services/database.dart';
 import 'package:flutter/material.dart';
@@ -17,14 +16,14 @@ class MyProfileWidget extends StatefulWidget {
 class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderStateMixin{
   late AnimationController controller;
   bool load=false;
-  String? address,_email,school,age,cpa,name,username;
+  String? address,school,age,cpa,name,username;
   String? genderChoose;
   bool hint =true;
   File ? _selectedImage;
   void toggleView(){
     hint =!hint;
   }
-  List<String>genderList=['Male','Female','No option'];
+  List<String>genderList=['Choose your gender','Male','Female','No option'];
   final nameEditingController=TextEditingController();
   final usernameEditingController=TextEditingController();
   final emailEditingController=TextEditingController();
@@ -55,7 +54,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
             children: [
               imageProfile(),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15),
                 child: TextFormField(
                   controller: nameEditingController,
                   onChanged: (text){
@@ -81,7 +80,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15),
                 child: TextFormField(
                   controller: usernameEditingController,
                   onChanged: (text){
@@ -107,33 +106,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: TextFormField(
-                  controller: adressEditingController,
-                  onChanged: (text){
-                    setState(() {
-                      address=text;
-                    });
-                  },
-                  decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.black,width:2.0)
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                      ),
-                      fillColor: Colors.white,
-                      filled: true,
-                      labelText:'Adress'
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15),
                 child: Container(
                   height: heightR/14,
                   decoration:BoxDecoration(
@@ -145,7 +118,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                     children: [
                       const Text('  Gender: '),
                       SizedBox(
-                        width: widthR/1.3,
+                        width: widthR/1.4,
                         height: heightR/19,
                         child: DropdownButton(
                           dropdownColor: Colors.white,
@@ -175,7 +148,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15),
                 child: TextFormField(
                   controller: ageEditingController,
                   onChanged: (text){
@@ -201,7 +174,33 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15),
+                child: TextFormField(
+                  controller: adressEditingController,
+                  onChanged: (text){
+                    setState(() {
+                      address=text;
+                    });
+                  },
+                  decoration: const InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(40)),
+                          borderSide: BorderSide(color: Colors.black,width:2.0)
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(40)),
+                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
+                      ),
+                      fillColor: Colors.white,
+                      filled: true,
+                      labelText:'Address'
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15),
                 child: TextFormField(
                   controller: schoolEditingController,
                   onChanged: (text){
@@ -227,7 +226,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15),
                 child: TextFormField(
                   controller: cpaEditingController,
                   onChanged: (text){
@@ -253,33 +252,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: TextFormField(
-                  controller: emailEditingController,
-                  onChanged: (text){
-                    setState(() {
-                      _email=text;
-                    });
-                    },
-                  decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.black,width:2.0)
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                                    ),
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                    labelText:'Email Address'
-                                ),
-                              ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical:10.0,horizontal:60),
+                padding: const EdgeInsets.symmetric(vertical:20.0,horizontal:60),
                 child: Container(
                   width: widthR/13,
                   decoration: const BoxDecoration(
@@ -292,7 +265,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                       style: GoogleFonts.roboto(fontSize: 20,color:Colors.white)
                     ),
                     onPressed: (){
-                      DatabaseService(uid:user!.uid).updateProfile(name, username, address, genderChoose, cpa, school,_email!);
+                      DatabaseService(uid:user!.uid).updateProfile(name, username,age,address, genderChoose, cpa, school);
                       final snackBar = SnackBar(
                         backgroundColor:Colors.purple[100],
                         content: const Text('Wait a minutes...'),

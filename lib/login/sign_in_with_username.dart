@@ -1,9 +1,9 @@
-import 'package:app/Login/SignIn.dart';
-import 'package:app/Widgets/HomePage.dart';
+import 'package:app/Login/sign_in.dart';
+import 'package:app/pages/home_page.dart';
 import 'package:app/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:app/Widgets/Loading.dart';
+import 'package:app/pages/loading_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 class LoginWithUsername extends StatefulWidget{

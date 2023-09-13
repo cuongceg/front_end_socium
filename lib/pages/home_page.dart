@@ -1,11 +1,12 @@
-import 'package:app/Widgets/profile_screen.dart';
-import 'package:app/Widgets/swipe_card.dart';
+import 'package:app/pages/profile_screen.dart';
+import 'package:app/pages/swipe_card.dart';
 import 'package:app/models/time_study.dart';
 import 'package:app/services/database.dart';
+import 'package:app/widgets/create_new_group.dart';
 import 'package:provider/provider.dart';
 import 'package:top_modal_sheet/top_modal_sheet.dart';
 import 'package:app/Widgets/sidebar.dart';
-import 'package:app/Widgets/calendar.dart';
+import 'package:app/pages/calendar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,18 +16,20 @@ import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:intl/intl.dart';
 import 'package:app/models/user.dart';
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
 class _HomePageState extends State<HomePage> {
   String? _topModelData;
-  int _selectedIndex = 0;
+  int _selectedIndex=0;
   static List<Widget> widgetOptions = <Widget>[
     const SwipeCard(),
     const TableEventsExample(),
+    const CreateNewGroup(),
     const Text('trang 3'),
-    const ProfileScreen()
+    const ProfileScreen(),
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -49,8 +52,23 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
           drawer: const SlideBar(),
           appBar: AppBar(
+            forceMaterialTransparency:true,
             backgroundColor: Colors.white,
-            title:Text('Socium',style: GoogleFonts.roboto(color: Colors.black,fontSize:22),),
+            title:SizedBox(
+              height: 150,
+              width: 210,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    backgroundImage: AssetImage('assets/images/icon_book.png'),
+                    radius: 45,
+                    backgroundColor: Colors.white,
+                  ),
+                  Text('Socium',style: GoogleFonts.roboto(fontSize: 25,color: Colors.black,fontWeight: FontWeight.bold),),
+                ],
+              ),
+            ),
             centerTitle: true,
             leading: Builder(
               builder: (BuildContext context) {
@@ -103,6 +121,11 @@ class _HomePageState extends State<HomePage> {
                 icon: Icon(Icons.calendar_month,color:Colors.purple[100],),
                 label: 'Calendar',
                 tooltip:'Calendar',
+              ),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.add,color:Colors.purple[100],),
+                  tooltip: 'Create your group',
+                  label: 'Create your group'
               ),
               BottomNavigationBarItem(
                 icon: badges.Badge(
