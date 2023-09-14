@@ -1,7 +1,7 @@
 import 'dart:io';
 class Auth{
-  final String? name,username,adress,school,age,cpa,gender,uid;
-  Auth({this.adress, this.school, this.age, this.cpa, this.gender,this.name,this.username,this.uid});
+  final String? name,username,adress,school,age,cpa,gender,uid,asset;
+  Auth({this.adress, this.school, this.age, this.cpa, this.gender,this.name,this.username,this.uid,this.asset});
 }// models for profile
 //uid to access authList
 
