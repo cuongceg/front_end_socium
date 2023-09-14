@@ -1,5 +1,6 @@
 import 'package:app/pages/home_page.dart';
 import 'package:app/services/auth.dart';
+import 'package:app/widgets/update_password.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:app/pages/loading_screen.dart';
@@ -15,7 +16,7 @@ class LoginWithUsername extends StatefulWidget{
 }
 class _LoginWithUsernameState extends State<LoginWithUsername>{
   AuthService auth=AuthService();
-  String _username='',_password='',error='';
+  String _username='',_password='';
   final userNameEditingController=TextEditingController();
   final passwordEditingController=TextEditingController();
   bool hint=true;
@@ -73,19 +74,28 @@ class _LoginWithUsernameState extends State<LoginWithUsername>{
                       indent: widthR/10,
                       endIndent: widthR/10,
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(bottom: 10,top: 5),
-                      child: SizedBox(height: 12.0,width: 30.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 20,top: 10,right:15),
+                          child: GestureDetector(
+                            onTap:(){
+                              Navigator.push(context,MaterialPageRoute(builder: (context)=>const UpdatePassword()));
+                            },
+                            child: Text('Forgot Password ?',style:GoogleFonts.roboto(color:Colors.blue,fontSize:19,fontWeight: FontWeight.bold),),
+                          ),
+                        ),
+                      ],
                     ),
-                    Text(error,style: Font().bodyError,),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 40),
+                      padding: const EdgeInsets.symmetric(vertical:10,horizontal:60),
                       child: SizedBox(
-                        height: heightR/13,
-                        width: widthR/2,
+                        height: heightR/16,
+                        width: widthR,
                         child: Container(
                           decoration:BoxDecoration(
-                              color: Colors.deepPurple[300],
+                              color: Colors.purple[800],
                               borderRadius: const BorderRadius.all(Radius.circular(40))
                           ),
                           child: TextButton(
@@ -93,7 +103,11 @@ class _LoginWithUsernameState extends State<LoginWithUsername>{
                               dynamic result= await auth.signInemailandpassword(_username, _password);
                               if(result == null){
                                 //check gmail or password right or wrong
-                                setState(() => error ='Invalid email or wrong password,please try again!' );
+                                final snackBar = SnackBar(
+                                  backgroundColor:Colors.purple[100],
+                                  content: Text('Invalid email or wrong password!',style: Font().bodyWhite,),
+                                );
+                                ScaffoldMessenger.of(context).showSnackBar(snackBar);
                               }
                               else{
                                 Get.to(()=>const HomePage());
@@ -101,7 +115,7 @@ class _LoginWithUsernameState extends State<LoginWithUsername>{
                               },
                             child:Text(
                                 "LOGIN",
-                                style: GoogleFonts.roboto(color: Colors.white,fontSize: 18,)
+                                style: GoogleFonts.roboto(color: Colors.white,fontSize:22,)
                             ),
                           ),
                         ),

@@ -42,7 +42,7 @@ packages:
     source: hosted
     version: "2.11.0"
   badges:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: badges
       sha256: "6e7f3ec561ec08f47f912cfe349d4a1707afdc8dda271e17b046aa6d42c89e77"
@@ -66,7 +66,7 @@ packages:
     source: hosted
     version: "1.3.0"
   chips_choice:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: chips_choice
       sha256: "593a9bf48238abb057f81b1bc33557f28588126d3bd8b9deae3123cc697aa1bf"
@@ -82,7 +82,7 @@ packages:
     source: hosted
     version: "1.1.1"
   cloud_firestore:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: cloud_firestore
       sha256: "0ff0baec167e308df192398dbd81ec13c1799635885c6aa6ed9ab8b5ed61f52c"
@@ -161,6 +161,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  file:
+    dependency: transitive
+    description:
+      name: file
+      sha256: "1b92bec4fc2a72f59a8e15af5f52cd441e4a7860b49499d69dfa817af20e925d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.1.4"
   file_selector_linux:
     dependency: transitive
     description:
@@ -194,7 +202,7 @@ packages:
     source: hosted
     version: "0.9.3"
   firebase_auth:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: firebase_auth
       sha256: "6d9be853426ab686d68076b8007ac29b2c31e7d549444a45b5c3fe1abc249fb0"
@@ -255,7 +263,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_facebook_auth:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: flutter_facebook_auth
       sha256: "617ac01c9bf1e1e49f89e604076bc7fc923244ff915ffc2ea6d1d4f4a531ea87"
@@ -343,7 +351,7 @@ packages:
     source: hosted
     version: "2.1.1"
   flutter_slidable:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: flutter_slidable
       sha256: cc4231579e3eae41ae166660df717f4bad1359c87f4a4322ad8ba1befeb3d2be
@@ -377,7 +385,7 @@ packages:
     source: hosted
     version: "4.6.5"
   google_fonts:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: google_fonts
       sha256: e20ff62b158b96f392bfc8afe29dee1503c94fbea2cbe8186fd59b756b8ae982
@@ -393,7 +401,7 @@ packages:
     source: hosted
     version: "0.2.1+1"
   google_sign_in:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: google_sign_in
       sha256: f45038d27bcad37498f282295ae97eece23c9349fc16649154067b87b9f1fd03
@@ -449,7 +457,7 @@ packages:
     source: hosted
     version: "4.0.2"
   image_picker:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: image_picker
       sha256: "841837258e0b42c80946c43443054fc726f5e8aa84a97f363eb9ef0d45b33c14"
@@ -585,7 +593,7 @@ packages:
     source: hosted
     version: "2.0.9"
   path:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path
       sha256: "8829d8a55c13fc0e37127c29fedf290c102f4e40ae94ada574091fe0ff96c917"
@@ -593,13 +601,13 @@ packages:
     source: hosted
     version: "1.8.3"
   path_provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path_provider
-      sha256: "909b84830485dbcd0308edf6f7368bc8fd76afa26a270420f34cabea2a6467a0"
+      sha256: a1aa8aaa2542a6bc57e381f132af822420216c80d4781f7aa085ca3229208aaa
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.1"
   path_provider_android:
     dependency: transitive
     description:
@@ -657,7 +665,7 @@ packages:
     source: hosted
     version: "2.1.5"
   provider:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: provider
       sha256: cdbe7530b12ecd9eb455bdaa2fcb8d4dad22e80b8afb4798b41479d5ce26847f
@@ -672,6 +680,62 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
+  shared_preferences:
+    dependency: "direct main"
+    description:
+      name: shared_preferences
+      sha256: b7f41bad7e521d205998772545de63ff4e6c97714775902c199353f8bf1511ac
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.1"
+  shared_preferences_android:
+    dependency: transitive
+    description:
+      name: shared_preferences_android
+      sha256: "8568a389334b6e83415b6aae55378e158fbc2314e074983362d20c562780fb06"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.1"
+  shared_preferences_foundation:
+    dependency: transitive
+    description:
+      name: shared_preferences_foundation
+      sha256: "7bf53a9f2d007329ee6f3df7268fd498f8373602f943c975598bbb34649b62a7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.4"
+  shared_preferences_linux:
+    dependency: transitive
+    description:
+      name: shared_preferences_linux
+      sha256: c2eb5bf57a2fe9ad6988121609e47d3e07bb3bdca5b6f8444e4cf302428a128a
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.1"
+  shared_preferences_platform_interface:
+    dependency: transitive
+    description:
+      name: shared_preferences_platform_interface
+      sha256: d4ec5fc9ebb2f2e056c617112aa75dcf92fc2e4faaf2ae999caa297473f75d8a
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.1"
+  shared_preferences_web:
+    dependency: transitive
+    description:
+      name: shared_preferences_web
+      sha256: d762709c2bbe80626ecc819143013cc820fa49ca5e363620ee20a8b15a3e3daf
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.1"
+  shared_preferences_windows:
+    dependency: transitive
+    description:
+      name: shared_preferences_windows
+      sha256: f763a101313bd3be87edffe0560037500967de9c394a714cd598d945517f694f
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.1"
   simple_gesture_detector:
     dependency: transitive
     description:
@@ -681,7 +745,7 @@ packages:
     source: hosted
     version: "0.2.0"
   size_config:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: size_config
       sha256: "912d8e55bb563a71e30f66be0719d2a6437c3500adb01b9e52681dc2362d62e0"
@@ -726,7 +790,7 @@ packages:
     source: hosted
     version: "1.2.0"
   swipe_cards:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: swipe_cards
       sha256: c34f28e71e3d4041455aaff49ac4242a79cad0e7d0ec16978f871059f3d956e3
@@ -742,7 +806,7 @@ packages:
     source: hosted
     version: "22.2.11"
   syncfusion_flutter_sliders:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: syncfusion_flutter_sliders
       sha256: "6ca35bc721652ac9247aa75527dfb6b2f29e2653c6f0b334ec6be80a19da5c2b"
@@ -750,7 +814,7 @@ packages:
     source: hosted
     version: "22.2.11"
   table_calendar:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: table_calendar
       sha256: "1e3521a3e6d3fc7f645a58b135ab663d458ab12504f1ea7f9b4b81d47086c478"
@@ -774,7 +838,7 @@ packages:
     source: hosted
     version: "0.5.1"
   top_modal_sheet:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: top_modal_sheet
       sha256: "58bd8a3cdd4651b97ee69a7f520bfca47162b378e8060abcfe83ac4212180858"
@@ -798,7 +862,7 @@ packages:
     source: hosted
     version: "2.1.4"
   wave:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: wave
       sha256: "01ebccb4caa9b150cbe4763aa2a23501bb582843a1f96281868bbb23cb4db1f9"

@@ -60,7 +60,7 @@ class _LoginState extends State<Login>{
                       height: heightR/6,
                       child: Center(
                           child:TextButton(
-                            child:  Text('By clicking Log In, you agree with our Terms. Learn how we process your data in our Privacy Policy and Cookies Policy.',style:GoogleFonts.roboto(fontSize: 15,color: Colors.white),),
+                            child:Text('By clicking Log In, you agree with our Terms. Learn how we process your data in our Privacy Policy and Cookies Policy.',style:GoogleFonts.roboto(fontSize: 15,color: Colors.white)),
                             onPressed: (){},
                           )
                       )

@@ -15,29 +15,31 @@ class Font{
 }
 
 class ConstAppBar{
-  AppBar goBackToLogin(String title){
+  AppBar goBackToLogin(String title) {
     return AppBar(
-      backgroundColor: Colors.white,
-      forceMaterialTransparency:true,
-      leading: Builder(
-          builder: (BuildContext context){
-            return IconButton(
-                icon:const Icon(Icons.arrow_back_rounded,size: 30,color: Colors.black,),
-                onPressed: (){
-                  Get.to(()=>const Login());
-                }
-            );
-          }
-      ),
-      title: Text(title,style:Font().headingBlack)
+        backgroundColor: Colors.white,
+        forceMaterialTransparency: true,
+        leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                  icon: const Icon(
+                    Icons.arrow_back_rounded, size: 30, color: Colors.black,),
+                  onPressed: () {
+                    Get.to(() => const Login());
+                  }
+              );
+            }
+        ),
+        title: Text(title, style:GoogleFonts.roboto(fontSize:21,color: Colors.black,fontWeight: FontWeight.bold))
     );
-}
+  }
 }
 
 class ConstValue{
   BorderRadius borderRadius=BorderRadius.circular(40);
   BorderSide borderSidePurple=const BorderSide(color: Colors.deepPurple,width:2.0);
   BorderSide borderSideBlack=const BorderSide(color: Colors.black,width:2.0);
+  EdgeInsets edgeInsets=const EdgeInsets.symmetric(vertical: 60,horizontal: 20);
 }
 
 class ConstWigdet{

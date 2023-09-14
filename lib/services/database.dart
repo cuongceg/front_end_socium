@@ -18,7 +18,7 @@ class DatabaseService{
       'add':add
     });
   }
-  Future updateProfile(String? name,String? username,String? age, String? address,String? gender,String? cpa,String? school,String? uid)async{
+  Future updateProfile(String? name,String? username,String? age, String? address,String? gender,String? cpa,String? school,String? uid,String? asset)async{
     return await profileCollection.doc(uid).set({
       'name':name,
       'username':username,
@@ -27,7 +27,8 @@ class DatabaseService{
       'gender':gender,
       'cpa':cpa,
       'school':school,
-      'uid':uid
+      'uid':uid,
+      'asset':asset
     });
   }
   List<Auth> _authDataFromSnapshot(QuerySnapshot snapshot){
@@ -40,7 +41,8 @@ class DatabaseService{
           gender:doc.data().toString().contains('gender')?doc.get('gender'):'',
           name:doc.data().toString().contains('name')?doc.get('name'):'',
           username:doc.data().toString().contains('username')?doc.get('username'):'',
-          uid:doc.data().toString().contains('uid')?doc.get('uid'):''
+          uid:doc.data().toString().contains('uid')?doc.get('uid'):'',
+          asset:doc.data().toString().contains('asset')?doc.get('asset'):'',
       );
     }).toList();
   }

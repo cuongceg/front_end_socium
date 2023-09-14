@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:app/const_value.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyProfileWidget extends StatefulWidget {
   const MyProfileWidget({super.key});
@@ -15,15 +16,19 @@ class MyProfileWidget extends StatefulWidget {
 }
 
 class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderStateMixin{
+  int index=0;
   late AnimationController controller;
   bool load=false;
   String? address,school,age,cpa,name,username;
   String? genderChoose;
   bool hint =true;
   File ? _selectedImage;
+  String? imagePath;
+
   void toggleView(){
     hint =!hint;
   }
+
   List<String>genderList=['Choose your gender','Male','Female','No option'];
   final nameEditingController=TextEditingController();
   final usernameEditingController=TextEditingController();
@@ -38,9 +43,16 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
     double heightR=MediaQuery.of(context).size.height;
     double widthR=MediaQuery.of(context).size.width;
     final user=Provider.of<MyUser?>(context);
+    final authList=Provider.of<List<Auth>?>(context);
+    for(int i=0;i<authList!.length;i++){
+      if(authList[i].uid==user!.uid){
+        index=i;
+      }
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        forceMaterialTransparency:true,
         leading: IconButton(
             icon:const Icon(Icons.arrow_back,size: 30,color: Colors.black,),
             onPressed: (){
@@ -173,7 +185,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                   width: widthR/13,
                   decoration: const BoxDecoration(
                     color: Colors.deepPurple,
-                    borderRadius: BorderRadius.all(Radius.circular(20))
+                    borderRadius: BorderRadius.all(Radius.circular(40))
                   ),
                   child: TextButton(
                     child:Text(
@@ -181,7 +193,8 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                       style: GoogleFonts.roboto(fontSize: 20,color:Colors.white)
                     ),
                     onPressed: (){
-                      DatabaseService(uid:user!.uid).updateProfile(name, username,age,address, genderChoose, cpa, school,user.uid);
+                      imagePath=_selectedImage!=null?_selectedImage?.path:authList[index].asset;
+                      DatabaseService(uid:user!.uid).updateProfile(name, username,age,address, genderChoose, cpa, school,user.uid,imagePath);
                       final snackBar = SnackBar(
                         backgroundColor:Colors.purple[100],
                         content: const Text('Wait a minutes...'),
@@ -214,9 +227,12 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
     return Center(
       child: Stack(
         children: [
-          CircleAvatar(
+          imagePath!=null?CircleAvatar(
+           radius: 80,
+           backgroundImage: FileImage(File(imagePath!)),
+          ):CircleAvatar(
                 radius:80.0,
-                backgroundImage:_selectedImage==null?const AssetImage('assets/images/avatarimage.png'):FileImage(File(_selectedImage!.path))as ImageProvider ,
+                backgroundImage:_selectedImage==null?const AssetImage('assets/images/default_avatar1.png'):FileImage(File(_selectedImage!.path))as ImageProvider ,
               ),
           Positioned(
             top:120,
@@ -244,7 +260,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
               child: Icon(
                 Icons.camera_alt,
                 size: 25,
-                color: Colors.deepPurple[200],
+                color: Colors.blue,
               ),
             ),
           )
@@ -260,10 +276,11 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
     });
   }
   Future _pickImageFromCamera()async{
-    final returnedImage= await ImagePicker().pickImage(source: ImageSource.camera);
+    var returnedImage= await ImagePicker().pickImage(source: ImageSource.camera);
     if(returnedImage == null)return;
     setState(() {
       _selectedImage=File(returnedImage.path);
     });
   }
+
 }
