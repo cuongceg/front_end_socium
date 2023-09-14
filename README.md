@@ -59,6 +59,7 @@ Running the app on mobile devices is recommended.
     ├── pages/ - Contains widgets represented as pages or screens
     ├── services/ - Contains classes controll models
     ├── widgets/ - Contains small widgets (components) for pages
+    ├── const_value.dart - Contains const value and methods
     ├── firebase_options.dart/ - Contains current platform for Firebase
     ├── main.dart - Entry point (code starts here)
 ├── macos/ - Contain build artifacts for macOS
