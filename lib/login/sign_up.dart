@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 import 'package:app/services/database.dart';
 import 'package:app/models/user.dart';
-import 'package:provider/provider.dart';
 
 class SignUp extends StatefulWidget{
   const SignUp({super.key});
@@ -22,7 +21,7 @@ class MySignupState extends State<SignUp>{
   final AuthService auth=AuthService();
   final _formKey =GlobalKey<FormState>();
   String? firstName,userName,confirmpassword;
-  String _email='',password='',error='';
+  String _email='',password='';
   final firstnameEditingController=TextEditingController();
   final usernameEditingController=TextEditingController();
   final emailEditingController=TextEditingController();
@@ -74,7 +73,7 @@ class MySignupState extends State<SignUp>{
                             inputPassword(),
                             inputConfirmPassword(),
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 20,horizontal:30),
+                              padding: const EdgeInsets.symmetric(vertical: 20,horizontal:60),
                               child: Container(
                                 height: 50,
                                 width:widthR,
@@ -88,11 +87,15 @@ class MySignupState extends State<SignUp>{
                                       MyUser? result=await auth.signUpEmail(_email, password);
                                       if(result == null){
                                         //check sign up successfully or not
-                                        setState(() => error ='Please sign up a valid email and try again!' );
+                                        final snackBar = SnackBar(
+                                          backgroundColor:Colors.purple[100],
+                                          content: Text('Enter a valid email and try again',style: Font().bodyWhite,),
+                                        );
+                                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
                                       }
                                       else{
                                         // create a profile base on unique uid
-                                        await DatabaseService(uid:result.uid).updateProfile(firstName, userName,'18','Ha Noi','Male','10.0','FPT',result.uid);
+                                        await DatabaseService(uid:result.uid).updateProfile(firstName, userName,'18','Ha Noi','Male','10.0','FPT',result.uid,null);
                                         showModalBottomSheet<void>(
                                           context: context,
                                           builder: (BuildContext context) {
@@ -129,17 +132,12 @@ class MySignupState extends State<SignUp>{
                                     }
                                   },
                                   child: const Text(
-                                    "Sign up",
-                                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),
+                                    "SIGN UP",
+                                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize:22),
                                   ),
                                 ),
                               ),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.only(bottom: 10),
-                              child: SizedBox(height: 12.0,width: 30.0),
-                            ),
-                            Text(error,style: Font().bodyError,)
                           ],
                         ),
                       )
