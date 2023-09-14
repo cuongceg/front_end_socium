@@ -1,3 +1,4 @@
+import 'package:app/const_value.dart';
 import 'package:app/pages/home_page.dart';
 import 'package:app/services/database.dart';
 import 'package:flutter/material.dart';
@@ -57,21 +58,7 @@ class _CreateNewGroupState extends State<CreateNewGroup> {
                       groupName=text;
                     });
                   },
-                  decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.black,width:2.0)
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                      ),
-                      fillColor: Colors.white,
-                      filled: true,
-                      labelText:'Your group name'
-                  ),
+                  decoration: ConstWigdet().inputDecoration('Your group name')
                 ),
               ),
               Padding(
@@ -89,21 +76,7 @@ class _CreateNewGroupState extends State<CreateNewGroup> {
                     setState(() {
                       hour=text;});
                     },
-                  decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.black,width:2.0)
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                      ),
-                      fillColor: Colors.white,
-                      filled: true,
-                      labelText:'Start in hour ?'
-                  ),
+                  decoration: ConstWigdet().inputDecoration('Begin at hour ?')
                 ),
               ),
               Padding(
@@ -122,21 +95,7 @@ class _CreateNewGroupState extends State<CreateNewGroup> {
                           minutes=text;
                         });
                       },
-                      decoration: const InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(40)),
-                              borderSide: BorderSide(color: Colors.black,width:2.0)
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(40)),
-                              borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                          ),
-                          fillColor: Colors.white,
-                          filled: true,
-                          labelText:'Start in minutes ?'
-                      ),
+                      decoration: ConstWigdet().inputDecoration('Begin at minutes ?')
                     ),
                   ),
               Padding(
@@ -155,21 +114,7 @@ class _CreateNewGroupState extends State<CreateNewGroup> {
                       owner=text;
                     });
                   },
-                  decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.black,width:2.0)
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                      ),
-                      fillColor: Colors.white,
-                      filled: true,
-                      labelText:'Your name'
-                  ),
+                  decoration: ConstWigdet().inputDecoration("Your name")
                 ),
               ),
               Padding(
