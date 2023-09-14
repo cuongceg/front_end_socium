@@ -7,6 +7,8 @@ import 'package:app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
+import 'package:app/services/database.dart';
+
 void main()async{
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.white, // status bar color
@@ -24,6 +26,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         StreamProvider<MyUser?>.value(value: AuthService().user,initialData: null),
+        StreamProvider<List<Auth>?>.value(value: DatabaseService().authData, initialData:null,),
       ],
       child: const GetMaterialApp(
           debugShowCheckedModeBanner: false,
