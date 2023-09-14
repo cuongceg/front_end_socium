@@ -8,6 +8,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:app/widgets/update_password.dart';
+import 'dart:io';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
@@ -34,7 +37,12 @@ class ProfileScreen extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(5),
-                child:imageProfile(),
+                child:Center(
+                  child: CircleAvatar(
+                    radius:80.0,
+                    backgroundImage:authList[index].asset==null?AssetImage('assets/images/defalut_avatar1.png'):FileImage(File(authList[index].asset!))as ImageProvider,
+                  ),
+                ),
               ),
               SizedBox(
                 width: widthR/0.8,
@@ -94,9 +102,7 @@ class ProfileScreen extends StatelessWidget {
                     Text('Change Password',style: GoogleFonts.roboto(fontSize: 20,color: Colors.black,fontWeight: FontWeight.bold)),
                     IconButton(
                       onPressed:(){
-                        print(authList[2].uid);
-                        print(user!.uid);
-                        print(index);
+                        Get.to(()=>const UpdatePassword());
                       },
                       icon: const Icon(Icons.settings),
                       iconSize: 25,
@@ -144,14 +150,6 @@ class ProfileScreen extends StatelessWidget {
                 leading:Image.asset(asset,width: widthR/15,height: heightR/15,),
                 title: Text(text,style:Font().bodyBlack)
             )),
-      ),
-    );
-  }
-  Widget imageProfile(){
-    return const Center(
-      child: CircleAvatar(
-        radius:80.0,
-        backgroundImage:AssetImage('assets/images/avatarimage.png'),
       ),
     );
   }
