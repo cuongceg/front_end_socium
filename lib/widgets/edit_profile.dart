@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:app/const_value.dart';
 
 class MyProfileWidget extends StatefulWidget {
   const MyProfileWidget({super.key});
@@ -47,7 +48,6 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
             },
         ),
       ),
-      backgroundColor: Colors.white,
       body: Form(
         key: _formkey,
           child: ListView(
@@ -62,21 +62,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                       name=text;
                     });
                   },
-                  decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.black,width:2.0)
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                      ),
-                      fillColor: Colors.white,
-                      filled: true,
-                      labelText:'Your Name'
-                  ),
+                  decoration: ConstWigdet().inputDecoration('Your name')
                 ),
               ),
               Padding(
@@ -88,21 +74,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                       username=text;
                     });
                   },
-                  decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.black,width:2.0)
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                      ),
-                      fillColor: Colors.white,
-                      filled: true,
-                      labelText:'Your Username'
-                  ),
+                  decoration: ConstWigdet().inputDecoration('Your user name ?')
                 ),
               ),
               Padding(
@@ -156,21 +128,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                       age=text;
                     });
                   },
-                  decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.black,width:2.0)
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                      ),
-                      fillColor: Colors.white,
-                      filled: true,
-                      labelText:'Age'
-                  ),
+                  decoration: ConstWigdet().inputDecoration('Age')
                 ),
               ),
               Padding(
@@ -182,21 +140,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                       address=text;
                     });
                   },
-                  decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.black,width:2.0)
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                      ),
-                      fillColor: Colors.white,
-                      filled: true,
-                      labelText:'Address'
-                  ),
+                  decoration:  ConstWigdet().inputDecoration('Adress ?'),
                 ),
               ),
               Padding(
@@ -208,21 +152,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                       school=text;
                     });
                   },
-                  decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.black,width:2.0)
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                      ),
-                      fillColor: Colors.white,
-                      filled: true,
-                      labelText:'School'
-                  ),
+                  decoration:  ConstWigdet().inputDecoration('School ?')
                 ),
               ),
               Padding(
@@ -234,21 +164,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                       cpa=text;
                     });
                   },
-                  decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.black,width:2.0)
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(40)),
-                          borderSide: BorderSide(color: Colors.deepPurple,width:2.0)
-                      ),
-                      fillColor: Colors.white,
-                      filled: true,
-                      labelText:'CPA'
-                  ),
+                  decoration:  ConstWigdet().inputDecoration('CPA ')
                 ),
               ),
               Padding(
@@ -265,7 +181,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                       style: GoogleFonts.roboto(fontSize: 20,color:Colors.white)
                     ),
                     onPressed: (){
-                      DatabaseService(uid:user!.uid).updateProfile(name, username,age,address, genderChoose, cpa, school);
+                      DatabaseService(uid:user!.uid).updateProfile(name, username,age,address, genderChoose, cpa, school,user.uid);
                       final snackBar = SnackBar(
                         backgroundColor:Colors.purple[100],
                         content: const Text('Wait a minutes...'),

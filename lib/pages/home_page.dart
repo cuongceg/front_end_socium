@@ -1,3 +1,4 @@
+import 'package:app/const_value.dart';
 import 'package:app/pages/profile_screen.dart';
 import 'package:app/pages/swipe_card.dart';
 import 'package:app/models/time_study.dart';
@@ -46,7 +47,6 @@ class _HomePageState extends State<HomePage> {
     );
     return MultiProvider(
       providers: [
-        StreamProvider<List<Auth>?>.value(value: DatabaseService().authData, initialData:null,),
         StreamProvider<List<TimeStudy>?>.value(value: DatabaseService().studyData, initialData:null)
       ],
       child: Scaffold(
@@ -60,12 +60,12 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     backgroundImage: AssetImage('assets/images/icon_book.png'),
                     radius: 45,
                     backgroundColor: Colors.white,
                   ),
-                  Text('Socium',style: GoogleFonts.roboto(fontSize: 25,color: Colors.black,fontWeight: FontWeight.bold),),
+                  Text('Socium',style:Font().headingBlack),
                 ],
               ),
             ),
