@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:size_config/size_config.dart';
 import 'package:wave/wave.dart';
 import 'package:wave/config.dart';
+import 'package:app/const_value.dart';
 
 class Myscreen extends StatefulWidget {
   const Myscreen({super.key});
@@ -77,11 +78,7 @@ class _MyscreenState extends State<Myscreen> {
                           child: Center(
                             child: Text(
                               "Socium",
-                              style: GoogleFonts.roboto(
-                                  color: Colors.deepPurple,
-                                  fontSize:40,
-                                fontWeight: FontWeight.bold
-                              ),
+                              style:Font().title
                             ),
                           ),
                         ),
@@ -99,10 +96,7 @@ class _MyscreenState extends State<Myscreen> {
                           child: Center(
                             child: Text(
                               "We provide the\nbest partners\nfor you",
-                              style: GoogleFonts.lato(
-                                  color: Colors.black,
-                                  fontSize: 45,
-                                  fontWeight: FontWeight.bold),
+                              style:Font().title1
                             ),
                           ),
                         ),
@@ -126,7 +120,7 @@ class _MyscreenState extends State<Myscreen> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text('Start now',style: GoogleFonts.roboto(fontSize: 20,color: Colors.white ),),
+                                    Text('Start now',style:Font().bodyWhite,),
                                     const Icon(Icons.arrow_forward,color: Colors.white,size: 25,)
                                   ],
                                 ),

@@ -1,5 +1,6 @@
 import 'package:app/Login/sign_in.dart';
 import 'package:app/Widgets/edit_profile.dart';
+import 'package:app/const_value.dart';
 import 'package:app/models/user.dart';
 import 'package:app/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +13,16 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int index=0;
     double heightR=MediaQuery.of(context).size.height;
     double widthR=MediaQuery.of(context).size.width;
+    final user=Provider.of<MyUser?>(context);
     final authList=Provider.of<List<Auth>?>(context);
+    for(int i=0;i<authList!.length;i++){
+      if(authList[i].uid==user!.uid){
+        index=i;
+      }
+    }
     SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(
             statusBarColor: Colors.white
@@ -29,17 +37,19 @@ class ProfileScreen extends StatelessWidget {
                 child:imageProfile(),
               ),
               SizedBox(
-                width: widthR,
+                width: widthR/0.8,
                 height: heightR/13,
-                child:Padding(
-                  padding: EdgeInsets.symmetric(horizontal:widthR/5),
+                child:Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text('10 friends',style:Font().headingBlack,),
+                      Text('10 posts',style:Font().headingBlack,)
+                    ],
+                  ),
                 )
               ),
-              const Divider(
-                height: 10,
-                thickness: 2,
-                color: Colors.black,
-              ),
+              ConstWigdet().thickDivider(),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
@@ -54,123 +64,13 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  width: widthR/2,
-                  height: heightR/15,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      color: Colors.white,
-                      border: Border.all(
-                          color: Colors.black
-                      )
-                  ),
-                  child: Center(child:ListTile(
-                    leading:Image.asset('assets/images/id-card.png',width: widthR/15,height: heightR/15),
-                    title: Text(authList== null?'Your Name':authList[0].name!,style: GoogleFonts.roboto(fontSize: 16,color: Colors.black)),
-                  )),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  width: widthR/2,
-                  height: heightR/15,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      color: Colors.white,
-                      border: Border.all(
-                          color: Colors.black
-                      )
-                  ),
-                  child: Center(
-                      child:ListTile(
-                          leading:Image.asset('assets/images/age.png',width: widthR/15,height: heightR/15,),
-                          title: Text(authList== null?'Your age':authList[0].age!,style: GoogleFonts.roboto(fontSize: 16))
-                      )),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  width: widthR/2,
-                  height: heightR/15,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      color: Colors.white,
-                      border: Border.all(
-                          color: Colors.black
-                      )
-                  ),
-                  child: Center(
-                      child:ListTile(
-                          leading:Image.asset('assets/images/gender-neutral.png',width: widthR/15,height: heightR/15),
-                          title: Text(authList== null?'Your gender':authList[0].gender!,style: GoogleFonts.roboto(fontSize: 16))
-                      )),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  width: widthR/2,
-                  height: heightR/15,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      color: Colors.white,
-                      border: Border.all(
-                        color: Colors.black
-                      )
-                  ),
-                  child: Center(child:ListTile(
-                          leading:Image.asset('assets/images/house.png',width: widthR/15,height: heightR/15,),
-                          title: Text(authList== null?'Ha Noi':authList[0].adress!,style: GoogleFonts.roboto(fontSize: 16,color: Colors.black)),
-                      )),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  width: widthR/2,
-                  height: heightR/15,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      color: Colors.white,
-                      border: Border.all(
-                          color: Colors.black
-                      )
-                  ),
-                  child: Center(
-                      child:ListTile(
-                          leading:Image.asset('assets/images/school.png',width: widthR/15,height: heightR/15,),
-                          title: Text(authList== null?'Your school':authList[0].school!,style: GoogleFonts.roboto(fontSize: 16))
-                      )),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  width: widthR/2,
-                  height: heightR/16,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      color: Colors.white,
-                      border: Border.all(
-                          color: Colors.black
-                      )
-                  ),
-                  child: Center(
-                      child:ListTile(
-                          leading:Image.asset('assets/images/gpa.png',width: widthR/15,height: heightR/15,),
-                          title: Text(authList== null?'Your CPA':authList[0].cpa!,style: GoogleFonts.roboto(fontSize: 18))
-                      )),
-                ),
-              ),
-              const Divider(
-                height: 10,
-                thickness: 0.5,
-                color: Colors.black,
-              ),
+              textProfile('assets/images/id-card.png',authList[index].name??'Your Name', widthR, heightR),
+              textProfile('assets/images/age.png',(authList[index].age==null)?'Your age':authList[index].age!, widthR, heightR),
+              textProfile('assets/images/gender-neutral.png',(authList[index].gender==null)?'Your gender':authList[index].gender!, widthR, heightR),
+              textProfile('assets/images/house.png',(authList[index].adress==null)?'Ha Noi':authList[index].adress!, widthR, heightR),
+              textProfile('assets/images/school.png',(authList[index].school==null)?'Your school':authList[index].school!, widthR, heightR),
+              textProfile('assets/images/gpa.png',(authList[index].cpa==null)?'Your CPA':authList[index].cpa!, widthR, heightR),
+              ConstWigdet().thinDivider(),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
@@ -179,36 +79,13 @@ class ProfileScreen extends StatelessWidget {
                     Text('Description',style: GoogleFonts.roboto(fontSize: 20,color: Colors.black,fontWeight: FontWeight.bold)),
                     TextButton(
                         onPressed:(){
-                          Get.to(()=>const MyProfileWidget());
                         },
                         child: Text('Edit',style: GoogleFonts.roboto(fontSize: 16,color: Colors.blue)))
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  width: widthR/2,
-                  height: heightR/16,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      color: Colors.white,
-                      border: Border.all(
-                          color: Colors.black
-                      )
-                  ),
-                  child: Center(
-                      child:ListTile(
-                          leading:const Icon(Icons.library_books_outlined),
-                          title: Text('Write our Biography and Hobby',style: GoogleFonts.roboto(fontSize: 18))
-                      )),
-                ),
-              ),
-              const Divider(
-                height: 10,
-                thickness: 0.5,
-                color: Colors.black,
-              ),
+              textProfile('assets/images/description.png','Write our Biography and Hobby', widthR, heightR),
+              ConstWigdet().thinDivider(),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
@@ -216,18 +93,18 @@ class ProfileScreen extends StatelessWidget {
                   children: [
                     Text('Change Password',style: GoogleFonts.roboto(fontSize: 20,color: Colors.black,fontWeight: FontWeight.bold)),
                     IconButton(
-                      onPressed:(){},
+                      onPressed:(){
+                        print(authList[2].uid);
+                        print(user!.uid);
+                        print(index);
+                      },
                       icon: const Icon(Icons.settings),
                       iconSize: 25,
                     )
                   ],
                 ),
               ),
-              const Divider(
-                height: 10,
-                thickness: 0.5,
-                color: Colors.black,
-              ),
+              ConstWigdet().thinDivider(),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
@@ -248,6 +125,27 @@ class ProfileScreen extends StatelessWidget {
             ],
           ),
       );
+  }
+  Widget textProfile(String asset,String text,double widthR,double heightR){
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Container(
+        width: widthR/2,
+        height: heightR/15,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(40),
+            color: Colors.white,
+            border: Border.all(
+                color: Colors.black
+            )
+        ),
+        child: Center(
+            child:ListTile(
+                leading:Image.asset(asset,width: widthR/15,height: heightR/15,),
+                title: Text(text,style:Font().bodyBlack)
+            )),
+      ),
+    );
   }
   Widget imageProfile(){
     return const Center(
