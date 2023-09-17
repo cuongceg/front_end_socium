@@ -7,6 +7,7 @@ class Font{
   final bodyWhite=GoogleFonts.roboto(fontSize:19,color:Colors.white);
   final bodyBlack=GoogleFonts.roboto(fontSize: 19,color: Colors.black);
   final bodyError=GoogleFonts.roboto(fontSize:19,color: Colors.red);
+  final bodyProfile=GoogleFonts.roboto(fontSize: 20,color: Colors.black,fontWeight: FontWeight.bold);
   final headingBlack=GoogleFonts.roboto(fontSize: 25,color: Colors.black,fontWeight: FontWeight.bold);
   final headingWhite=GoogleFonts.roboto(fontSize: 25,color: Colors.white,fontWeight: FontWeight.bold);
   final headingPurple=GoogleFonts.roboto(fontSize: 25,color: Colors.purple[200],fontWeight: FontWeight.bold);

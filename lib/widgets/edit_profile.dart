@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:app/const_value.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class MyProfileWidget extends StatefulWidget {
   const MyProfileWidget({super.key});
@@ -44,9 +43,11 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
     double widthR=MediaQuery.of(context).size.width;
     final user=Provider.of<MyUser?>(context);
     final authList=Provider.of<List<Auth>?>(context);
-    for(int i=0;i<authList!.length;i++){
-      if(authList[i].uid==user!.uid){
-        index=i;
+    if(authList!=null){
+      for(int i=0;i<authList.length;i++){
+        if(authList[i].uid==user!.uid){
+          index=i;
+        }
       }
     }
     return Scaffold(
@@ -193,7 +194,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                       style: GoogleFonts.roboto(fontSize: 20,color:Colors.white)
                     ),
                     onPressed: (){
-                      imagePath=_selectedImage!=null?_selectedImage?.path:authList[index].asset;
+                      imagePath=_selectedImage!=null?_selectedImage?.path:authList?[index].asset;
                       DatabaseService(uid:user!.uid).updateProfile(name, username,age,address, genderChoose, cpa, school,user.uid,imagePath);
                       final snackBar = SnackBar(
                         backgroundColor:Colors.purple[100],
@@ -257,7 +258,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
                   )
                 );
               },
-              child: Icon(
+              child: const Icon(
                 Icons.camera_alt,
                 size: 25,
                 color: Colors.blue,
@@ -282,5 +283,4 @@ class _MyProfileWidgetState extends State<MyProfileWidget>with TickerProviderSta
       _selectedImage=File(returnedImage.path);
     });
   }
-
 }

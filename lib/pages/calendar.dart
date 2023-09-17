@@ -104,12 +104,12 @@ class _TableEventsExampleState extends State<TableEventsExample> {
               ),
               rangeHighlightColor: const Color(0xFFCE93D8),
               todayDecoration:BoxDecoration(
-                color: Colors.purple[100],
-                shape: BoxShape.circle
+                  color: Colors.purple[100],
+                  shape: BoxShape.circle
               ),
               selectedDecoration:BoxDecoration(
-                color: Colors.purple[100],
-                shape: BoxShape.circle
+                  color: Colors.purple[100],
+                  shape: BoxShape.circle
               ),
             ),
             onDaySelected: _onDaySelected,

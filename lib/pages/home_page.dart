@@ -1,10 +1,7 @@
 import 'package:app/const_value.dart';
 import 'package:app/pages/profile_screen.dart';
 import 'package:app/pages/swipe_card.dart';
-import 'package:app/models/time_study.dart';
-import 'package:app/services/database.dart';
 import 'package:app/widgets/create_new_group.dart';
-import 'package:provider/provider.dart';
 import 'package:top_modal_sheet/top_modal_sheet.dart';
 import 'package:app/Widgets/sidebar.dart';
 import 'package:app/pages/calendar.dart';
@@ -15,7 +12,8 @@ import 'package:chips_choice/chips_choice.dart';
 import 'package:badges/badges.dart'as badges;
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:intl/intl.dart';
-import 'package:app/models/user.dart';
+
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -30,7 +28,7 @@ class _HomePageState extends State<HomePage> {
     const TableEventsExample(),
     const CreateNewGroup(),
     const Text('trang 3'),
-    const ProfileScreen(),
+    ProfileScreen(),
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -45,11 +43,7 @@ class _HomePageState extends State<HomePage> {
             statusBarColor: Colors.white
         )
     );
-    return MultiProvider(
-      providers: [
-        StreamProvider<List<TimeStudy>?>.value(value: DatabaseService().studyData, initialData:null)
-      ],
-      child: Scaffold(
+    return Scaffold(
           drawer: const SlideBar(),
           appBar: AppBar(
             forceMaterialTransparency:true,
@@ -156,8 +150,7 @@ class _HomePageState extends State<HomePage> {
             selectedItemColor: Colors.purple[100],
             onTap: _onItemTapped,
           ),
-        ),
-    );
+        );
   }
 }
 class TopModel extends StatefulWidget {
