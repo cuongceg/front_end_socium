@@ -8,6 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'package:app/services/database.dart';
+import 'package:app/models/time_study.dart';
 
 void main()async{
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
       providers: [
         StreamProvider<MyUser?>.value(value: AuthService().user,initialData: null),
         StreamProvider<List<Auth>?>.value(value: DatabaseService().authData, initialData:null,),
+        StreamProvider<List<TimeStudy>?>.value(value: DatabaseService().studyData, initialData:null)
       ],
       child: const GetMaterialApp(
           debugShowCheckedModeBanner: false,
