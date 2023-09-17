@@ -3,28 +3,40 @@ import 'package:app/Widgets/edit_profile.dart';
 import 'package:app/const_value.dart';
 import 'package:app/models/user.dart';
 import 'package:app/services/auth.dart';
+import 'package:app/widgets/location_on.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_blue/flutter_blue.dart';
 import 'package:app/widgets/update_password.dart';
 import 'dart:io';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  ProfileScreen({super.key});
+  String name='',age='',adress='',gender='',cpa='',school='',imagePath='';
+  int index=0;
 
   @override
   Widget build(BuildContext context) {
-    int index=0;
     double heightR=MediaQuery.of(context).size.height;
     double widthR=MediaQuery.of(context).size.width;
     final user=Provider.of<MyUser?>(context);
     final authList=Provider.of<List<Auth>?>(context);
-    for(int i=0;i<authList!.length;i++){
-      if(authList[i].uid==user!.uid){
-        index=i;
+    if(authList!=null){
+      for(int i=0;i<authList.length;i++){
+        if(authList[i].uid==user!.uid){
+          index=i;
+        }
       }
+      name=authList[index].name??'Your name';
+      age=authList[index].age??'Your age';
+      adress=authList[index].age??'Your adress';
+      gender=authList[index].gender??'Your gender';
+      school=authList[index].school??'Your school';
+      cpa=authList[index].cpa??'Your cpa';
+      imagePath=authList[index].asset??'';
     }
     SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(
@@ -40,7 +52,7 @@ class ProfileScreen extends StatelessWidget {
                 child:Center(
                   child: CircleAvatar(
                     radius:80.0,
-                    backgroundImage:authList[index].asset==null?AssetImage('assets/images/defalut_avatar1.png'):FileImage(File(authList[index].asset!))as ImageProvider,
+                    backgroundImage:authList?[index].asset==null?const AssetImage('assets/images/default_avatar1.png'):FileImage(File(imagePath))as ImageProvider,
                   ),
                 ),
               ),
@@ -72,12 +84,12 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              textProfile('assets/images/id-card.png',authList[index].name??'Your Name', widthR, heightR),
-              textProfile('assets/images/age.png',(authList[index].age==null)?'Your age':authList[index].age!, widthR, heightR),
-              textProfile('assets/images/gender-neutral.png',(authList[index].gender==null)?'Your gender':authList[index].gender!, widthR, heightR),
-              textProfile('assets/images/house.png',(authList[index].adress==null)?'Ha Noi':authList[index].adress!, widthR, heightR),
-              textProfile('assets/images/school.png',(authList[index].school==null)?'Your school':authList[index].school!, widthR, heightR),
-              textProfile('assets/images/gpa.png',(authList[index].cpa==null)?'Your CPA':authList[index].cpa!, widthR, heightR),
+              textProfile('assets/images/id-card.png',name, widthR, heightR),
+              textProfile('assets/images/age.png',age, widthR, heightR),
+              textProfile('assets/images/gender-neutral.png',gender, widthR, heightR),
+              textProfile('assets/images/house.png',adress, widthR, heightR),
+              textProfile('assets/images/school.png',school, widthR, heightR),
+              textProfile('assets/images/gpa.png',cpa, widthR, heightR),
               ConstWigdet().thinDivider(),
               Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -99,7 +111,7 @@ class ProfileScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Change Password',style: GoogleFonts.roboto(fontSize: 20,color: Colors.black,fontWeight: FontWeight.bold)),
+                    Text('Change Password',style:Font().bodyProfile),
                     IconButton(
                       onPressed:(){
                         Get.to(()=>const UpdatePassword());
@@ -116,7 +128,24 @@ class ProfileScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Log Out',style: GoogleFonts.roboto(fontSize: 20,color: Colors.black,fontWeight: FontWeight.bold)),
+                    Text('Location',style:Font().bodyProfile),
+                    IconButton(
+                      onPressed:(){
+                        Get.to(()=>GeolocatorWidget());
+                      },
+                      icon: const Icon(Icons.location_on,color: Colors.black,),
+                      iconSize: 25,
+                    )
+                  ],
+                ),
+              ),
+              ConstWigdet().thinDivider(),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Log Out',style:Font().bodyProfile),
                     IconButton(
                       onPressed:(){
                         AuthService().signOut();

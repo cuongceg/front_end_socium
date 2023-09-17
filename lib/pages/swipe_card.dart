@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:app/const_value.dart';
 import 'package:app/models/time_study.dart';
 import 'package:app/services/database.dart';
@@ -5,6 +7,7 @@ import 'package:app/widgets/create_new_group.dart';
 import 'package:flutter/material.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class SwipeCard extends StatefulWidget {
   const SwipeCard({super.key});
@@ -53,7 +56,7 @@ class _SwipeCardState extends State<SwipeCard> {
                 //draggable cards
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top:60.0),
+                  padding: const EdgeInsets.only(top:30.0),
                   child: SizedBox(
                     height: heightR/1.6,
                     width: widthR,
@@ -88,7 +91,7 @@ class _SwipeCardState extends State<SwipeCard> {
                                           },
 
                                           blendMode: BlendMode.srcOver,
-                                          child: Image.asset('assets/images/swipe_image.png',fit:BoxFit.fill,)
+                                          child:_swipeItems[index].content[7]==null? Image.asset('assets/images/swipe_image.png',fit:BoxFit.fill,) : Image.file(File((_swipeItems[index].content[7])),fit: BoxFit.fill,)
                                       )),
                                 ),
                               ),
@@ -124,7 +127,15 @@ class _SwipeCardState extends State<SwipeCard> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(top:10.0),
-                                        child:constListTileSizedBox('assets/images/clock.png','Time: Begin at ${_swipeItems[index].content[1]}:${_swipeItems[index].content[2]}')
+                                        child:SizedBox(
+                                            width: widthR,
+                                            height: heightR/25,
+                                            child:ListTile(
+                                                leading: Image.asset('assets/images/clock.png'),
+                                                title: Text('Time: Begin at ${_swipeItems[index].content[1]}:${_swipeItems[index].content[2]}',style:Font().bodyWhite,),
+                                                subtitle: Text('In ${_swipeItems[index].content[6]}',style:Font().bodyWhite,)
+                                            )
+                                        )
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(top:10.0),
@@ -250,27 +261,29 @@ class _SwipeCardState extends State<SwipeCard> {
     if(studyList!=null) {
       for (int i = studyList.length-1; i>-1; i--) {
         if(studyList[i].loading=='true'){
+          DateFormat dateFormat=DateFormat('dd-MM-yyyy');
+          String date=dateFormat.format(studyList[i].dateTime!);
           //check filter or watched
-          List<String?>list1=[studyList[i].name,studyList[i].hour,studyList[i].minutes,studyList[i].owner,studyList[i].subjects,studyList[i].description];
+          List<String?>list1=[studyList[i].name,studyList[i].hour,studyList[i].minutes,studyList[i].owner,studyList[i].subjects,studyList[i].description,date,studyList[i].asset];
           setState(() {
             _swipeItems.add(SwipeItem(
               content: list1,
               likeAction: () {
-                DatabaseService(uid: '$i').updateDatabase('${studyList[i].hour}','${studyList[i].minutes}','${studyList[i].name}','${studyList[i].owner}',"${studyList[i].subjects}",'false','${studyList[i].description}','Yes');
+                DatabaseService(uid: '$i').updateDatabase('${studyList[i].hour}','${studyList[i].minutes}','${studyList[i].name}','${studyList[i].owner}',"${studyList[i].subjects}",'false','${studyList[i].description}','Yes',studyList[i].dateTime,'${studyList[i].asset}','${studyList[i].uid}');
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text("Interested in ${studyList[i].subjects} of ${studyList[i].owner}",style:Font().bodyWhite,),
                   duration:duration,
                 ));
               },
               nopeAction: () {
-                DatabaseService(uid: '$i').updateDatabase('${studyList[i].hour}','${studyList[i].minutes}','${studyList[i].name}','${studyList[i].owner}',"${studyList[i].subjects}",'false','${studyList[i].description}','No');
+                DatabaseService(uid: '$i').updateDatabase('${studyList[i].hour}','${studyList[i].minutes}','${studyList[i].name}','${studyList[i].owner}',"${studyList[i].subjects}",'false','${studyList[i].description}','No',studyList[i].dateTime,'${studyList[i].asset}','${studyList[i].uid}');
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text("Indifferent in ${studyList[i].subjects} of ${studyList[i].owner}}",style:Font().bodyWhite,),
                   duration:duration,
                 ));
               },
               superlikeAction: () {
-                DatabaseService(uid: '$i').updateDatabase('${studyList[i].hour}','${studyList[i].minutes}','${studyList[i].name}','${studyList[i].owner}',"${studyList[i].subjects}",'false','${studyList[i].description}','Yes');
+                DatabaseService(uid: '$i').updateDatabase('${studyList[i].hour}','${studyList[i].minutes}','${studyList[i].name}','${studyList[i].owner}',"${studyList[i].subjects}",'false','${studyList[i].description}','Yes',studyList[i].dateTime,'${studyList[i].asset}','${studyList[i].uid}');
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text("Superliked ${studyList[i].subjects} of ${studyList[i].owner}}",style:Font().bodyWhite,),
                   duration:duration,
