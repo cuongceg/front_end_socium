@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 typedef CustomTextInputValidateConditionCallback = bool Function(String?)?;
+typedef CustomTextInputCallback = void Function(String)?;
 
 class CustomTextInput extends StatelessWidget {
   final TextEditingController? controller;
@@ -10,6 +11,7 @@ class CustomTextInput extends StatelessWidget {
   final String? messageOnValidationFailed;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final CustomTextInputCallback onChanged;
 
   const CustomTextInput({
     super.key,
@@ -20,6 +22,7 @@ class CustomTextInput extends StatelessWidget {
     this.messageOnValidationFailed,
     this.prefixIcon,
     this.suffixIcon,
+    this.onChanged,
   });
 
   @override
@@ -58,6 +61,7 @@ class CustomTextInput extends StatelessWidget {
         prefixIcon: this.prefixIcon,
         suffixIcon: this.suffixIcon,
       ),
+      onChanged: onChanged,
     );
   }
 }
